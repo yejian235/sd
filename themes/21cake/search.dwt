@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='utils.js,common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> 
+
+<div class="pt88">
+<span class="blank10"></span>
+<div style="margin:0 auto;">
+  <div class="sr_contation">
+    <div id="vjiaTop" class="sr_left">
+      <div style="background-color: White; z-index: 100" id="floatdiv">
+        <div class="filterTabBarN5">
+          <ul class="searchTabbarN5">
+            <li class="hover"><a href="javascript:void(0);" class="track"> <!-- {if $intromode eq 'best'} --> 
+              <span>{$lang.best_goods}</span> 
+              <!-- {elseif $intromode eq 'new'} --> 
+              <span>{$lang.new_goods}</span> 
+              <!-- {elseif $intromode eq 'hot'} --> 
+              <span>{$lang.hot_goods}</span>
+              <!-- {elseif $intromode eq 'promotion'} --> 
+              <span>{$lang.promotion_goods}</span> 
+              <!-- {else} --> 
+              <span>{$lang.search_result}</span> 
+              <!-- {/if} --></a></li>
+          </ul>
+        </div>
+        <Div class="filterFormN5">
+          <div class="filterForm0703">
+            <div class="filterSection" style="float:left;"> 
+              <!--{if $goods_list}-->
+              <form action="search.php" method="post" class="sort" name="listform" id="form">
+                &nbsp;
+                <select name="sort">
+                  
+                  
+              {html_options options=$lang.sort selected=$pager.search.sort}
+              
+                
+                </select>
+                <select name="order">
+                  
+                  
+              {html_options options=$lang.order selected=$pager.search.order}
+              
+                
+                </select>
+                <input type="image" name="imageField" src="../images/bnt_go.gif" alt="go"/>
+                <input type="hidden" name="page" value="{$pager.page}" />
+                <input type="hidden" name="display" value="{$pager.display}" id="display" />
+                <!--{foreach from=$pager.search key=key item=item}--> 
+                {if $key neq "sort" and $key neq "order"}
+                {if $key eq 'keywords'}
+                <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+                {else}
+                <input type="hidden" name="{$key}" value="{$item}" />
+                {/if}
+                {/if} 
+                <!--{/foreach}-->
+              </form>
+              <!--{/if}--> 
+            </div>
+            <div style="float:right; padding-right:10px;">
+            	<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+            </div>
+          </div>
+        </Div>
+      </div>
+      <span class="blank15"></span>
+      <Div id="vanclproducts" class="GoodsList" style="margin:0;">
+        <ul>
+          <!--{if $goods_list}-->
+          <form action="compare.php" method="post" name="compareForm" id="compareForm" onsubmit="return compareGoods(this);">
+          <!--{foreach from=$goods_list item=goods}--> 
+          <!-- {if $goods.goods_id} -->
+          <li>
+          	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<td width="230"><div class="img"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" width="200" height="200" /></a></div></td>
+                    <td>
+                    	<div class="name"><a href="{$goods.url}">{$goods.goods_style_name}</a></div>
+                        <div class="present">{$goods.goods_brief}</div>
+                    </td>
+                    <td width="15%"><div class="price"><!--{if $goods.promote_price neq "" } -->{$goods.promote_price}<!--{else}-->{$goods.shop_price}<!--{/if}--></div></td>
+                    <td width="14.5%" bgcolor="#fdf7f2">
+                    	<div class="action">
+                        	<a href="{$goods.url}"><i class="see"></i>查看详情</a>
+                            <a href="javascript:addToCart({$goods.goods_id})" class="on"><i class="addcart"></i>加入购物车</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </li>
+            <!--{/if}--> 
+            <!--{/foreach}-->
+            
+          </form>
+          <script type="text/javascript">
+        {foreach from=$lang.compare_js item=item key=key}
+        var {$key} = "{$item}";
+        {/foreach}
+
+                                {foreach from=$lang.compare_js item=item key=key}
+        {if $key neq 'button_compare'}
+        var {$key} = "{$item}";
+        {else}
+        var button_compare = '';
+        {/if}
+        {/foreach}
+
+
+        var compare_no_goods = "{$lang.compare_no_goods}";
+        window.onload = function()
+        {
+          Compare.init();
+          fixpng();
+        }
+        var btn_buy = "{$lang.btn_buy}";
+        var is_cancel = "{$lang.is_cancel}";
+        var select_spe = "{$lang.select_spe}";
+        </script> 
+          <!--{else}-->
+          <div style="padding:20px 0px; text-align:center" class="f5" >{$lang.no_search_result}</div>
+          <!--{/if}-->
+          
+        </ul>
+      </Div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="PageFooter">
+	<div class="PageFooter"><!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --></div>
+</div>
+</body>
+</html>

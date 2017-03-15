@@ -1,0 +1,74 @@
+/*
+Template Name: EC模板堂21Cake正版授权模板
+Template URI: http://www.ecmoban.com/
+Description: 买模板请认准模板堂(ecmoban.com) <br/> 24小时客服联系 QQ:264944615
+Version: 2.73
+Author: 进模板堂挑选更多ECSHOP模板
+Author URI: http://www.ecmoban.com/
+Logo filename: logo.gif
+*/
+
+/* 欢迎页 */
+.member-welcome{ border: solid 1px #fbefe6; background: #fcfaf8;}
+.member-welcome-content{ padding: 20px 30px; line-height: 26px; color:#8e6a55}
+.member-welcome-content h2{ height:40px; line-height:40px; font-size:18px; margin-bottom:10px;}
+.member-welcome-content h2 span{ color:#432818;}
+.member-welcome-content li{ width:50%; float:left;}
+.member-welcome-content li b{ color:#432818;}
+.member-welcome-content li span{ font-weight:700;}
+.member-welcome-alert{ border-top:solid 1px #fbefe6; padding: 9px 30px; color:#8e6a55;}
+.member-welcome-alert a{ color:#8e6a55;}
+
+.member_other h5{ text-align:left; height:37px; line-height:37px; background:#efefef; border-bottom:1px solid #e0e0e0; padding:0 10px; font-size:14px; color:#8e6a55;}
+.member_other ul{ background:#fcfcfc; border:1px solid #f5f5f5; padding:10px;}
+.member_other li{ line-height:26px; color:#8e6a55;}
+.member_other li a,.ordercontainer .Table a{ color:#8e6a55;}
+.member_other li a:hover,.ordercontainer .Table a:hover{ color:#432818;}
+
+.ordercontainer h5{ font-size:20px; color:#8c6a52; border-bottom:1px solid #eee; height:38px; line-height:38px; text-align:left; background:none;}
+.ordercontainer .Table{ border-spacing:0; color:#8e6a55;}
+.ordercontainer .Table thead{ border:1px solid #f5f5f5;}
+.ordercontainer .Table th{ background:#f9f9f9; height:38px; line-height:38px; font-size:14px;}
+.ordercontainer .Table tbody td{ background:#fcfcfc; border-top:1px solid #f5f5f5; line-height:27px;}
+
+/* 填写订单页 */
+.order-main{ color:#846046;}
+.order-main .cart-top{ height:40px; line-height:40px; border-bottom:solid 1px #eee;}
+.order-main .order-section{ border:0; border-bottom:solid 1px #eee;}
+.OrderSectionTit{ padding:0 0 0 20px; height:36px; line-height:36px;}
+.OrderSectionTit02{ padding:0;}
+.OrderSectionTit b{ font-size: 14px; font-weight: normal; padding-right:20px;}
+.OrderSectionTit03{ padding:0; height:33px; line-height:33px;}
+.OrderSectionTit03 b{ font-weight:700;}
+.OrderSectionTit a{ color:#70a4c1;}
+.OrderSectionTit a:hover{ color:#70a4c1; text-decoration:underline;}
+.OrderSectionCon{ padding:10px 20px 8px; width:87%; margin:0 auto;}
+.AddressCon span{ padding-right:10px;}
+.DeliveryCon li{ float:left; width:25%; padding-bottom:10px;}
+.DeliveryCon02 li{ width:auto; padding-right:50px;}
+.DeliveryCon li .InputRadio{ margin-right:10px;}
+
+.Greetings{ display:none;}
+
+.order-main .order-section{}
+.order-main .order-section02{ border:0;}
+.OrderSectionCon02 table{ border:1px solid #e6e6e6; border-bottom:0;}
+.OrderSectionCon02 thead{ background:#f7f7f7;}
+.OrderSectionCon02 thead th{ height: 30px; line-height: 30px; color:#8e6a55; border-bottom:1px solid #e6e6e6;}
+.OrderSectionCon02 tbody td{ border-bottom:1px solid #e6e6e6;}
+.OrderSectionCon02 tbody a{ color:#8e6a55; line-height:20px;}
+.OrderSectionCon02 tbody a:hover{ color:#432818;}
+.OrderSectionCon02 .Price{ color:#461802;}
+
+.OrderSectionCon02 .action-remark-textarea{ vertical-align:top; padding:2px; font-size:12px; font-family:"微软雅黑",Microsoft Yahei; color:#846046; border-color:#eee; width:1194px; outline:0;}
+
+.OrderSectionTit03 .btn-collapse{ display:inline-block; width: 16px; height: 16px; overflow: hidden; border: 1px solid darkgrey; vertical-align: middle; text-align: center; font: 14px/18px simsun,serif; color: #8B8B8B; margin-right:10px;}
+.OrderSectionTit03 .btn-collapse:hover{ color:#491903; text-decoration:none;}
+.OrderSectionCon03{ padding-left:30px;}
+.OrderSectionCon03 p{ margin-bottom:8px; line-height:25px;}
+
+.order-section02 .order-price{ background:url(images/jiesbg.jpg) center 0 repeat-x; padding:10px 15px;}
+.order-section02 .order-price .f4_b{ color:#491903; font-weight:normal; font-size:14px; font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;}
+.order-section02 .order-price .f4_b em{ font-size:12px;}
+.order-section02 .order-price .action-submit-order{ padding:0 40px; height:50px; line-height:50px; background:#432818; border:0; font-size:18px; color:#fff; cursor:pointer;}
+.order-section02 .order-price .action-submit-order:hover{ background:#491903;}

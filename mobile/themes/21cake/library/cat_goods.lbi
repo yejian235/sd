@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $cat_best} -->
+<div class="ect_category_box">
+	<!--{foreach from=$cat_best item=cat_best name=cat_best}-->
+	<div class="lookMore"><a href="{$cat.url}" >{$cat_best.cat_name|escape:html}</a></div>
+	<ul>
+	<!-- {foreach name=goods from=$cat_best.goods_list item=goods}--> 
+	<li><a href="{$goods.url}"><img src="{$goods.goods_img}" /></a><span>{$goods.name}</span>
+	<!-- {if $goods.promote_price neq ""} -->
+	<span>{$goods.promote_price}</span>
+	<!-- {else}-->
+	<span>{$goods.shop_price}</span>
+	<!-- {/if} -->
+	</li>
+	<!--{/foreach}-->
+	</ul>
+	<!--{/foreach}-->
+
+</div>
+<!-- {/if} -->

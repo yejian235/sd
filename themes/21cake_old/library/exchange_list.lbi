@@ -1,0 +1,83 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="fbListPruArea">
+  <div id="floatposition"> </div>
+  <div id="toolbar">
+    <div id="floatdiv" style="background-color: rgb(255, 255, 255); z-index: 100; position: static; top: 0px;">
+      <div class="filterFormN5">
+        <div class="filterSection">
+          <div class="searchReorder">
+            <h3> 排序：</h3>
+            <div class="search_ProHotTurn" style="margin-top:0; background:none;">
+               <form method="GET" class="sort" name="listform">
+                  <select name="sort" style="border:1px solid #ccc;">
+          
+          
+        {html_options options=$lang.exchange_sort selected=$pager.sort}
+        
+        
+        </select>
+        <select name="order" style="border:1px solid #ccc;">
+          
+          
+        {html_options options=$lang.order selected=$pager.order}
+        
+        
+        </select>
+        <input type="image" name="imageField" src="../images/bnt_go.gif" alt="go"/>
+        <input type="hidden" name="category" value="{$category}" />
+        <input type="hidden" name="display" value="{$pager.display}" id="display" />
+        <input type="hidden" name="integral_min" value="{$integral_min}" />
+        <input type="hidden" name="integral_max" value="{$integral_max}" />
+        <input type="hidden" name="page" value="{$pager.page}" />
+              </form>
+            </div>
+          </div>
+          <div class="pageBoxN5">
+            <div class="pagediv"> <span>相关商品<strong id="vanclListTotalRecords">{$pager.record_count}</strong>款</span> 
+              <!--搜索S--> 
+              <!--搜索E--> 
+              <span><!-- {if $pager.page_prev} --><a href="{$pager.page_prev}" class="jquery_pager_prevpage"></a><!--{else}--><a href="javascript:void(0);" class="jquery_pager_prevpage"></a><!-- {/if} -->  </span> <span>&nbsp; <!--{foreach from=$pager.page_number key=key item=item}-->
+      <!-- {if $pager.page eq $key} -->{$key}<!-- {/if} --><!--{/foreach}-->/{$pager.page_count}&nbsp;</span> <span><!-- {if $pager.page_next} --><a href="{$pager.page_next}" class="track jquery_pager_nextpage"></a><!--{else}--><a href="javascript:void(0);" class="track jquery_pager_nextpage"></a><!-- {/if} --></span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <span class="blank0"></span> 
+   
+
+  <div class="productList">
+    <ul class="ContentMonitor">
+      <!--{foreach from=$goods_list item=goods name=foo}--> 
+      <!-- {if $goods.goods_id} -->
+      <li id="gItem_{$goods.goods_id}" class="scListArea"><strong><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}" class="track"> <img src="{$goods.goods_thumb}" class="productLazyLoad" alt="{$goods.goods_name}" style="display: inline; "></a> </strong>
+
+        <span class="blank0"></span>
+        <p class="Product-Name"> <a href="{$goods.url}" target="_blank" title="{$goods.goods_name}" class="track">{$goods.goods_name}<font class="Product-Name"></font> </a> </p>
+        <div class="Product-Price"> <strong> {$lang.exchange_integral}{$goods.exchange_integral}</strong> </div>
+        <div class="vancllist_logo"></div>
+      </li>
+      <!--{if $smarty.foreach.foo.iteration mod 4 eq 0} -->
+      <li class="normalBreaker"></li>
+      <!--{elseif $smarty.foreach.foo.iteration mod 4 eq 0}-->
+      <li class="wideBreaker"></li>
+      <!--{/if}--> 
+      <!--{/if}--> 
+      <!--{/foreach}-->
+    </ul>
+  </div>
+
+    
+    
+   
+</div>
+
+<script type="text/javascript">
+  window.onload = function()
+  {
+    Compare.init();
+    fixpng();
+  }
+  var button_compare = '';
+</script>

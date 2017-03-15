@@ -1,0 +1,37 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+ <section class="wrap message_list wrapSh radius3">
+ <form action="{:url('user/service')}" method="post" enctype="multipart/form-data" name="formMsg" onSubmit="return submitMsg()">
+      <table width="100%" border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+        {if $order_info}
+        <tr>
+          <td> {$lang.order_number} <a href ="{$order_info.url}"><img src="images/note.gif" />{$order_info.order_sn}</a>
+            <input name="msg_type" type="hidden" value="5" />
+            <input name="order_id" type="hidden" value="{$order_info.order_id}" class="inputBg_touch" /></td>
+        </tr>
+        {else}
+        <tr>
+          <td><input name="msg_type" type="radio" value="0" checked="checked" />
+            {$lang.type[0]}
+            <input type="radio" name="msg_type" value="1" />
+            {$lang.type[1]}
+            <input type="radio" name="msg_type" value="2" />
+            {$lang.type[2]}
+            <input type="radio" name="msg_type" value="3" />
+            {$lang.type[3]}
+            <input type="radio" name="msg_type" value="4" />
+            {$lang.type[4]} </td>
+        </tr>
+        {/if}
+        <tr>
+          <td><input name="msg_title" type="text" placeholder="{$lang.message_title}" class="inputBg_touch" /></td>
+        </tr>
+        <tr>
+          <td><textarea name="msg_content" placeholder="{$lang.message_content}" cols="50" rows="4" wrap="virtual" style="padding-left:.625rem; padding-top:.625rem; box-sizing:border-box; border: 1px #DDD solid; width: 100%;"></textarea></td>
+        </tr>
+        <tr>
+          <td><input type="hidden" name="act" value="act_add_message" />
+            <input type="submit" value="{$lang.submit}" class="c-btn3 radius20" style="font-size:.9rem" /></td>
+        </tr>
+      </table>
+    </form>
+    </section>

@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<script>document.title=document.title.replace(/<br>+/i,"");</script>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,lefttime.js'}
+<script type="text/javascript">
+  {foreach from=$lang.js_languages item=item key=key}
+    var {$key} = "{$item}";
+  {/foreach}
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="pt88">
+<div class="tuangou_main">
+  <div class="tuangou_subnav">
+    <div class="lnav">
+      <h2 class="titleall"> 全部</h2>
+      <div class="tuangou_subnav_adpic">
+        <input type="hidden" id="adPlaceHolder7">
+        <ul>
+              <!-- TemplateBeginEditable name="团购商品详情页左侧广告" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+{insert name='ads' id=$ads_id num=$ads_num}
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+       
+        </ul>
+      </div>
+    </div>
+    <div class="bottom"> </div>
+  </div>
+  <div class="tuangou_ad01">
+    <Div class="CENdiv">
+      <div class="hd">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+      </div>
+      <div class="bd">
+        <ul>
+                      <!-- TemplateBeginEditable name="团购商品详情页右侧广告" -->
+<!-- #BeginLibraryItem "/library/ad_position.lbi" -->
+
+{insert name='ads' id=$ads_id num=$ads_num}
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+         
+        </ul>
+      </div>
+    </Div>
+    <span class="blank10"></span>
+    <div class="main_content">
+      <div style="width:100%">
+        <Div class="left_cont" style="width:100%">
+          <div class="productitem" style="width:100%">
+            <div class="left_cont_top">
+              <p class="t_txt1"> <span class="txtpn">{$gb_goods.goods_name|escape:html}</span><br /><span>{$gb_goods.goods_brief}</span> </p>
+              <script>
+              	var str=$("span.txtpn").text().replace(/<br>+/ig,"");
+				$("span.txtpn").text(str)
+              </script>
+              <div class="fast_buy">
+                <div class="buy_left" style="position:relative;"><img src="{$gb_goods.goods_img}" width="400" height="400"/>
+                <div style="position:absolute; left:0; bottom:0;  height: 35px; width: 400px; z-index: 100; background:#432818">
+                                <div style=" height: 30px; width: 400px; line-height:30px; text-align:center;" id="divCountDown">
+                                        <span class="CountDown endtime" value="{$group_buy.end_date}" showday="show"></span>
+                                </div>
+                            </div>
+                </div>
+                <div class="buy_right">
+                  <div class="t_pricebox"> 团购价:<font id="fontPrice">{$group_buy.price_ladder.0.formated_price}</font><span>原价：<span id="spanMprice">{$gb_goods.shop_price}</span></span></div>
+                  <form action="group_buy.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+                    <!-- {foreach from=$specification item=spec key=spec_key} 循环规格开始 --> 
+                    <!-- {if $spec.is_show_img eq 1} -->
+                    <p class="t_tit"> {$spec.name}：</p>
+                    <div class="t_colourbox">
+                      <dl class="color">
+                        <!-- {foreach from=$spec.values item=value key=key} -->
+                        <dd onclick="$.oVanclItem.fChangeProduct(this,'2357602')" id="dd_color_2357602">
+                          <p title="{$value.label}"> <img src="{$value.thumb_url}" /><span>{$value.label}</span> </p>
+                          <input type="radio" name="spec_{$spec_key}" value="{$value.id}" style="display:none;" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} />
+                        </dd>
+                        <!-- {/foreach} -->
+                      </dl>
+                    </div>
+                    <!-- {else} -->
+                    
+                    <p class="t_tit"> 尺码：</p>
+                    <div class="p_sizebox">
+                      <dl class="size ">
+                        <!-- {foreach from=$spec.values item=value key=key} -->
+                        <dd>{$value.label}
+                          <input type="radio" name="spec_{$spec_key}" value="{$value.id}" style="display:none;" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} />
+                        </dd>
+                        <!-- {/foreach} -->
+                      </dl>
+                    </div>
+                    <!-- {/if} -->
+                      <!-- {/foreach} -->
+                    <p class="t_tit"> 数量：
+                      <select id="number" name="number" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </p>
+             
+                <input type="hidden" name="group_buy_id" value="{$group_buy.group_buy_id}" />
+               
+                    <div style="height: 40px" class="buyatnbox"><input type="image" src="images/rgbtn02.jpg" style="vertical-align:middle;" />               </div>
+                  </form>
+                  <span class="blank10"></span> </div>
+              </div>
+            </div>
+            <span class="blank10"></span>
+            <div class="left_cont_bottom">
+              <div class="prod_txt">
+                <h3> 商品描述</h3>
+                <Div class="goods_desc">{$gb_goods.goods_desc}</Div>
+                <span class="blank10"></span> </div>
+         
+            </div>
+          </div>
+        </Div>
+      </div>
+      <div class="right_cont" style="display:none;"> <!-- TemplateBeginEditable name="右侧区域" -->
+<!-- #BeginLibraryItem "/library/recommend_hot.lbi" -->
+
+<!-- {if $hot_goods} -->
+<!-- {if $script_name eq 'group'} -->
+<div class="other_tg">
+  <div class="other_title">
+    <div class="other_title_left">
+      <h3 style="font-weight: bold;"> 今日热卖</h3>
+    </div>
+  </div>
+  <span class="blank10"> </span> 
+  
+  <!-- {if $hot_goods} --> 
+  <!--{foreach from=$hot_goods item=goods}-->
+  <p> <a href="{$goods.url}" target="_blank" style="color:Black;">{$goods.short_style_name}</a></p>
+  <span class="blank10"></span>
+  <div class="o_tg">
+    <div style="margin-left: 8px;" class="pic"> <a style="padding-top:0px" target="_blank" href="{$goods.url}"> <img alt="" src="{$goods.thumb}"></a></div>
+    <div class="o_price"> <span> <!-- {if $goods.promote_price neq ""} --> 
+      {$goods.promote_price} 
+      <!-- {else}--> 
+      {$goods.shop_price} 
+      <!--{/if}--></span>
+      <p style="text-decoration: line-through;" class="t1"> 市场价</p>
+      <p style="text-decoration: line-through;"> {$goods.market_price}</p>
+    </div>
+  </div>
+  <span style="border-bottom:1px solid gray" class="blank10"> </span> 
+  <!--{/foreach}--> 
+  <!-- {/if} --> </div>
+<!-- {else} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="box">
+<div class="box_2 centerPadd">
+  <div class="itemTit Hot" id="itemHot">
+      {if $cat_rec[3]}
+      <h2><a href="javascript:void(0)" onclick="change_tab_style('itemHot', 'h2', this);get_cat_recommend(3, 0);">{$lang.all_goods}</a></h2>
+      {foreach from=$cat_rec[3] item=rec_data}
+      <h2 class="h2bg"><a href="javascript:void(0)" onclick="change_tab_style('itemHot', 'h2', this);get_cat_recommend(3, {$rec_data.cat_id})">{$rec_data.cat_name}</a></h2>
+      {/foreach}
+      {/if}
+  </div>
+  <div id="show_hot_area" class="clearfix goodsBox">
+  <!-- {/if} -->
+  <!--{foreach from=$hot_goods item=goods}-->
+  <div class="goodsItem">
+         <span class="hot"></span>
+           <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a><br />
+           <p><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+           <font class="f1">
+           <!-- {if $goods.promote_price neq ""} -->
+          {$goods.promote_price}
+          <!-- {else}-->
+          {$goods.shop_price}
+          <!--{/if}-->
+           </font>
+        </div>
+  <!--{/foreach}-->
+  <div class="more"><a href="../search.php?intro=hot"><img src="images/more.gif" /></a></div>
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+</div>
+</div>
+<div class="blank5"></div>
+  <!-- {/if} -->
+<!-- {/if} -->
+<!-- {/if} -->
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable --> </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="PageFooter">
+	<div class="PageFooter"><!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --></div>
+</div>
+<script>
+$(function(){
+	$(".color p").click(function(){
+		$(this).parents(".color").find("dd").removeClass("selectcolor");
+		$(this).parent().addClass("selectcolor");
+		$(this).parents(".color").find("input:radio").prop("checked",false);
+		$(this).parent().find("input:radio").prop("checked",true);
+	
+	})
+	
+	$(".size dd").click(function(){
+		$(this).parent().find("dd").removeClass("visited");
+		$(this).addClass("visited");
+		$(this).parent().find("input:radio").prop("checked",false);
+		$(this).find("input:radio").prop("checked",true);
+	
+	})
+	
+	
+
+  setInterval(function(){
+      $(".endtime").each(function(){
+        var obj = $(this);
+        var endTime = new Date(parseInt(obj.attr('value')) * 1000);
+		var show_day =  obj.attr('showday');
+        var nowTime = new Date();
+        var nMS=endTime.getTime() - nowTime.getTime() + 28800000;
+        var myD=Math.floor(nMS/(1000 * 60 * 60 * 24));
+		var myH_show=Math.floor(nMS/(1000*60*60) % 24);
+        var myH=Math.floor(nMS/(1000*60*60));
+        var myM=Math.floor(nMS/(1000*60)) % 60;
+        var myS=Math.floor(nMS/1000) % 60;
+        var myMS=Math.floor(nMS/100) % 10;
+		var a = myH+myM+myS+myMS;
+        if(a>0){
+			if(show_day == 'show')
+			{
+		
+				var str = '<span>还剩：</span><span class="num">'+myD+'</span>天<span class="num">'+myH_show+'</span>小时<span class="num">'+myM+'</span>分<span class="num">'+myS+'</span>秒'
+				//var str = '还剩<strong class="tcd-d">'+myD+'</strong>天<strong class="tcd-h">'+myH_show+'</strong>小时<strong class="tcd-m">'+myM+'</strong>分<strong class="tcd-s">'+myS+'</strong>秒';
+			}
+			else
+			{
+		
+				var str = '<span>还剩：</span><span class="num">'+myH+'</span>小时<span class="num">'+myM+'</span>分<span class="num">'+myS+'</span>秒';
+			}
+        }else{
+			var str = "已结束！";	
+		}
+		obj.html(str);
+      });
+    }, 100);	
+
+})
+
+</script>
+<script>
+$(".CENdiv").slide({mainCell:".bd ul",titCell:".hd li",autoPlay:true,titOnClassName:"on"});
+</script>
+</body>
+<script type="text/javascript">
+var gmt_end_time = "{$group_buy.gmt_end_date|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var now_time = {$now_time};
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</html>

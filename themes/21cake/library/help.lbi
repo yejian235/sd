@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div class="footer"> <span class="blank15"></span> 
+  <!--{if $helps}--> 
+  <!-- {foreach from=$helps item=help_cat name=foo} --> 
+  
+  {if $smarty.foreach.foo.iteration < 7}
+  <div class="helpCol_0{$smarty.foreach.foo.iteration}">
+    <h3>{$help_cat.cat_name}</h3>
+    <span class="blank5"></span>
+    <ul>
+      <!-- {foreach from=$help_cat.article item=item} -->
+      <li><a target="_blank" href="{$item.url}" title="{$item.title|escape:html}" class="track">{$item.short_title}</a></li>
+      <!-- {/foreach} -->
+    </ul>
+  </div>
+  {/if} 
+  
+  <!-- {/foreach} -->
+  <div class="helpCol_07">
+    <div class="helpCol_weixin"><span>火热下载中...</span></div>
+  </div>
+  <!--{/if}--> 
+  <span class="blank12"></span>
+  <div class="footIcon"><a class="returnGoods" href="#" target="_blank"><span></span></a><a class="freeShip" href="#" target="_blank"><span></span></a><a class="cashOn" href="#" target="_blank"><span>货到付款的购物网站</span></a><a class="cusService" href="#" target="_blank"><span></span></a></div>
+  <span class="blank10"></span> </div>

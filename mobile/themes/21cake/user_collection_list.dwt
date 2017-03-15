@@ -1,0 +1,34 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+
+<section class="wrap collection_list wrapSh wrapGrzl">
+  <section class="order_box single_item">
+    <div class="shInfo">
+<!--{if $collection_list}-->
+  <ul>
+  <!-- {foreach from=$collection_list item=val} -->
+    <li class="single_item" id="more_element_1"> <a href="{:url('goods/index', array('id'=>$this->_var[val]['goods_id']))}"><img src="{$val.goods_thumb}" style="width:5em;height:5em;"></a>
+      <dl>
+        <dt>
+          <h4 class="title"><a href="{:url('goods/index', array('id'=>$this->_var[val]['goods_id']))}">{$val.goods_name}</a></h4>
+        </dt>
+        <dd class="dd-price">
+      <span class="pull-left"><strong>{$lang.sort_price}：<b class="ect-colory">{$val.shop_price}</b></strong><small class="ect-margin-lr"><del>{$val.market_price}</del></small></span>
+    </dd>
+        <dd class="text-center">
+      <a class="flow-del" href="javascript:if(confirm('{$lang.remove_collection_confirm}')) location.href='{:url('delete_collection', array('rec_id'=>$this->_var['val']['rec_id']))}'">{$lang.drop}</a>
+    </dd>
+      </dl>
+    </li>
+  <!-- {/foreach} -->
+  </ul>
+   <!--{else}-->
+      <p class="text-center ect-margin-tb ect-padding-tb">{$lang.no_data}</p>
+   <!--{/if}--> 
+    </div>
+
+  </section>
+ <!-- #BeginLibraryItem "/library/page.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> 
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

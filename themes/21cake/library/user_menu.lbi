@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<ul>
+  <li>
+    <h3>订单中心</h3>
+  </li>
+  <li><a href="user.php?act=order_list" class="track {if $action eq 'order_list'|| $action eq 'order_detail'}selected{/if}">{$lang.label_order}</a></li>
+  <!--<a href="user.php?act=aftermarket_list"{if $action eq 'aftermarket_list'|| $action eq 'aftermarket_detail'}class="curs"{/if}><img src="../images/u3.gif">退换货订单</a>-->
+  <li><a href="user.php?act=order_back"{if $action eq 'order_back'|| $action eq 'order_back_search'}class="curs"{/if}>退换货列表</a></li>
+  <li><a href="user.php?act=address_list" class="track {if $action eq 'address_list'}selected{/if}">{$lang.label_address}</a></li>
+  <li class="no_bg"> <a href="user.php?act=booking_list" class="track {if $action eq 'booking_list'}selected{/if}">{$lang.label_booking}</a></li>
+</ul>
+<ul>
+  <li>
+    <h3>会员中心</h3>
+  </li>
+  <li><a href="user.php?act=profile" class="track {if $action eq 'profile'}selected{/if}">{$lang.label_profile}</a></li>
+  <li><a href="user.php?act=collection_list"class="track {if $action eq 'collection_list'}selected{/if}">{$lang.label_collection}</a></li>
+  <li><a href="user.php?act=tag_list" class="track {if $action eq 'tag_list'}selected{/if}">{$lang.label_tag}</a></li>
+  <li><a href="user.php?act=message_list" class="track {if $action eq 'message_list'}selected{/if}">{$lang.label_message}</a></li>
+  <!-- {if $affiliate.on eq 1} -->
+   <li><a href="user.php?act=affiliate" class="track {if $action eq 'affiliate'}selected{/if}">{$lang.label_affiliate}</a></li>
+   <!-- {/if} -->
+   <li class="no_bg"><a href="user.php?act=comment_list" class="track {if $action eq 'comment_list'}selected{/if}">{$lang.label_comment}</a></li>
+
+</ul>
+<ul class="service-rate">
+  <li>
+    <h3>订单中心</h3>
+  </li>
+  <li><a href="user.php?act=bonus" class="track {if $action eq 'bonus'|| $action eq 'order_detail'}selected{/if}">{$lang.label_bonus}</a></li>
+  <li><a href="user.php?act=track_packages"class="track {if $action eq 'track_packages'}selected{/if}">{$lang.label_track_packages}</a></li>
+  <li class="no_bg"><a href="user.php?act=account_log" class="track {if $action eq 'account_log'}selected{/if}">{$lang.label_user_surplus}</a></li>
+ 
+</ul>

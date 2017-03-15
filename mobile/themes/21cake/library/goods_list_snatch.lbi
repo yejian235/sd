@@ -1,0 +1,23 @@
+
+
+<div class="ect-margin-tb ect-pro-list ect-margin-bottom0 ect-border-bottom0">
+  <ul id="J_ItemList">
+    <!--{foreach name=goods_list from=$goods_list item=goods}-->
+    <li class="single_item"> <a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.name}"></a>
+      <dl>
+        <dt>
+          <h4 class="title"><a href="{$goods.url}">{$goods.name}</a>
+          <!--{if $item.overtime }-->
+          ({$lang.end})
+          <!--{/if}-->
+          </h4>
+        </dt>
+        <dd><span class="pull-left"><strong>{$lang.price}：<b class="ect-colory">
+        <!--{if $goods.promote_price}-->{$goods.promote_price}<!--{else}-->{$goods.shop_price}<!--{/if}-->
+        </b></strong><small class="ect-margin-lr"><del>{$goods.formated_market_price}</del></small></span></dd>
+      </dl>
+    </li>
+    <!--{/foreach}-->
+  </ul>
+</div>
+

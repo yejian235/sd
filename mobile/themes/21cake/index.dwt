@@ -1,0 +1,86 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> 
+<!--头部s-->
+<div id="page">
+  <header id="header">
+    <div class="header_l header_il"> <a class="ico_02" href="{:url('user/index')}"></a> </div>
+    <h1 class="indexLogo">{$shop_name}</h1>
+    <div class="header_r"> <a class="ico_01" href="{:url('flow/cart')}"></a> </div>
+  </header>
+</div>
+<!--头部e--> 
+<!--播放器广告s-->
+<div id="focus" class="focus region">
+  <div class="hd">
+    <ul>
+    </ul>
+  </div>
+  <div class="bd">{insert name='ads' id=1 num=3} </div>
+</div>
+<!--播放器广告e--> 
+
+<!--content s-->
+<div id=content class="wrap"> 
+  <!--快速连接s-->
+  <div class="row_category">
+    <ul class="row">
+      <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+      <li class="col-sm-3 col-xs-3"> <a href="{$nav.url}"{if $nav.opennew eq 1} target="_blank"{/if} title="{$nav.name}"> <img src="{$nav.pic}" style="" /> </a>
+        <p> {$nav.name} </p>
+      </li>
+            <!-- {/foreach} -->
+    </ul>
+  </div>
+  <!--快速连接e--> 
+  
+  <!--banner广告s-->
+  <div class="banner_c1">
+    <div class="bnrc_l bnrc_lBorder"> <!-- TemplateBeginEditable name="首页中部广告位左1" --> <!-- #BeginLibraryItem "/library/ad_position.lbi" --> {insert name='ads' id=$ads_id num=$ads_num} <!-- #EndLibraryItem --> <!-- TemplateEndEditable --></div>
+    <div class="bnrc_r bnrc_lBorder">
+      <ul>
+        <li class="bnrc_rb"> <!-- TemplateBeginEditable name="首页中部广告位右1" --> <!-- #BeginLibraryItem "/library/ad_position.lbi" --> {insert name='ads' id=$ads_id num=$ads_num} <!-- #EndLibraryItem --> <!-- TemplateEndEditable --></li>
+      </ul>
+    </div>
+  </div>
+  <div class="banner_c1" style="display:none">
+    <div class="bnrc_l bnrc_lBorder"><!-- TemplateBeginEditable name="首页中部广告位左2" --> <!-- #BeginLibraryItem "/library/ad_position.lbi" --> {insert name='ads' id=$ads_id num=$ads_num} <!-- #EndLibraryItem --> <!-- TemplateEndEditable --></div>
+    <div class="bnrc_r bnrc_lBorder"><!-- TemplateBeginEditable name="首页中部广告位右2" --> <!-- #BeginLibraryItem "/library/ad_position.lbi" --> {insert name='ads' id=$ads_id num=$ads_num} <!-- #EndLibraryItem --> <!-- TemplateEndEditable --></div>
+  </div>
+</div>
+
+
+<style type="text/css">
+.ect_category_box {}
+.ect_category_box ul{ margin:0; padding:0; overflow:hidden}
+.ect_category_box ul li { float:left; width:50%; border:1px #f1f1f1 solid; background:#fff; text-align:center; margin-left:-1px; margin-top:-1px; padding-bottom:1rem; }
+.ect_category_box ul li span{height:3rem; display:block; white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden;}
+.ect_category_box ul li img { width:100%}
+</style>
+
+<div class="ect_category_box">
+  <div class="lookMore"><a href="{:url('category/index',array('type'=>'hot'))}">{$lang.hot_goods}</a></div>
+  <ul>
+      <!-- {if $new_goods} --> 
+      <!--{foreach from=$new_goods item=goods name=new_goods}-->
+      <li><a href="{$goods.url}"><img src="{$goods.goods_img}" /></a><span>{$goods.name}</span>
+        <!-- {if $goods.promote_price neq ""} --> 
+        <span>{$goods.promote_price}</span> 
+        <!-- {else}--> 
+        <span>{$goods.shop_price}</span> 
+        <!-- {/if} --> 
+      </li>
+      <!--{/foreach}--> 
+      <!-- {/if} --> 
+    </ul>
+</div>
+
+ <!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem --> 
+
+
+<div class="lookMore"><a href="{:url('category/all')}">查看更多 ></a></div>
+
+<!--content e--> 
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body></html>

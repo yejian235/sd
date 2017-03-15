@@ -1,0 +1,39 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+
+<dl class="user_top">
+  <dd>
+    <p class="p1">{if $info.nickname}{$info.nickname}{else}{$info.username}{/if}
+</p>
+    <p><a href="{:url('user/logout')}" ><span>{$lang.label_logout}</span></a></p>
+  </dd>
+  <img class="userTop_bg" src="__TPL__/images/lg_bg03.jpg" width="720" height="320">
+</dl>
+<div class="blank3"></div>
+<section class="wrap wrapU">
+  <div class="list_box radius3" style="padding-top:0;padding-bottom:0;">
+  <img src="__TPL__/images/un_10.png"><a href="{:url('user/profile')}" class="clearfix"> <span>{$lang.label_profile}</span><i></i> </a>
+  <img src="__TPL__/images/un_01.png"><a href="{:url('user/order_list')}" class="clearfix"> <span>{$lang.label_order}</span><i></i></a>
+  <img src="__TPL__/images/un_05.png"><a href="{:url('user/address_list')}"  class="clearfix"> <span>{$lang.label_address}</span><i></i> </a>
+  <img src="__TPL__/images/un_14.png"><a href="{:url('user/collection_list')}"  class="clearfix"> <span>{$lang.label_collection}</span><i></i> </a>
+  <img src="__TPL__/images/un_pass.png"><a href="{:url('user/edit_password')}" class="clearfix"> <span>{$lang.edit_password}</span><i></i> </a>
+  </div>
+  <div class="blank3"></div>
+  <div class="list_box radius3" style="padding-top:0;padding-bottom:0;">
+  <img src="__TPL__/images/un_service.png"><a href="{:url('user/service')}" class="clearfix"> <span>{$lang.user_service}</span><i></i> </a>
+  <img src="__TPL__/images/un_15.png"><a href="{:url('user/msg_list')}" class="clearfix"> <span>{$lang.label_message}</span><i></i> </a>
+  <img src="__TPL__/images/un_123.png"><a href="{:url('user/share')}" class="clearfix"> <span>{$lang.label_share}</span><i></i> </a>
+  <!--<img src="__TPL__/images/un_13.png"><a href="{:url('user/comment_list')}"  class="clearfix"> <span>{$lang.label_comment}</span><i></i> </a>-->
+  <img src="__TPL__/images/un_hongbao.png"><a class="clearfix" href="{:url('user/bonus')}"><span>我的红包</span><i></i></a></div>
+  <div class="blank3"></div>
+  <div class="list_box radius3" style="padding-top:0;padding-bottom:0;">
+    <img src="__TPL__/images/un_biaoqian.png"><a class="clearfix" href="{:url('user/tag_list')}"><span>{$lang.label_tag}</span><i></i></a>
+	  <img src="__TPL__/images/un_dengji.png"><a class="clearfix" href="{:url('user/booking_list')}"><span>{$lang.label_booking}</span><i></i></a>
+      <img src="__TPL__/images/un_133.png"><a class="clearfix" href="{:url('user/account_detail')}"><span>{$lang.label_user_surplus}</span><i></i></a>
+      <img src="__TPL__/images/un_pinglun.png"><a class="clearfix" href="{:url('comment_list')}"><span>{$lang.label_comment}</span><i></i></a>
+      </div>
+      
+  <div class="blank3"></div>
+</section>
+
+</body>
+</html>

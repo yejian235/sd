@@ -1,0 +1,125 @@
+.takephoto-trigger{border:0 !important;}
+
+.webuploader-container {
+	position: relative;
+	left:20px;
+	border-radius:4px;	
+}
+.webuploader-container .add-icon{margin-right:6rem; font-size:3rem !important; width:100%;}
+.viewThumb img{width:100%; height:auto;}
+.webuploader-element-invisible {
+	height: auto
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+}
+.webuploader-pick {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px;
+	color: #bbb;
+	text-align: center;
+	border-radius: 3px;
+	padding-left:3rem;
+	overflow: hidden;
+	font-size:14px;
+
+}
+.webuploader-pick-hover {
+	background: ;
+}
+
+.webuploader-pick-disable {
+	opacity: 0.6;
+	pointer-events:none;
+}
+
+.webuploader-container .add-icon {
+    color: #ddd;
+    font-family: ArialMT,Arial;
+    font-size: 40px;
+    font-weight: 400;
+    height: 40px;
+    line-height: 40px;
+	
+	
+}
+
+
+.img-list li {
+    display: inline;
+    float: left;
+    font-size: 12px;
+    height: 110px;
+    margin: 0 8px 20px 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 110px;
+}
+.img-list li p.imgWrap {
+    height: 110px;
+    line-height: 110px;
+    overflow: hidden;
+    position: relative;
+    transform-origin: 50% 50% 0;
+    transition: all 200ms ease-out 0s;
+    vertical-align: middle;
+    width: 110px;
+    z-index: 2;
+}
+
+.img-list div.file-panel {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    height: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 300;
+}
+.img-list div.file-panel span.cancel {
+    background-position: -48px -24px;
+}
+.img-list div.file-panel span {
+    background: rgba(0, 0, 0, 0) url("../images/icons.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    height: 24px;
+    margin: 5px 1px 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 24px;
+}
+.img-list div.file-panel span.rotateRight {
+    background-position: -24px -24px;
+}
+.img-list div.file-panel span {
+    background: rgba(0, 0, 0, 0) url("../images/icons.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    height: 24px;
+    margin: 5px 1px 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 24px;
+}
+.img-list div.file-panel span.rotateLeft {
+    background-position: 0 -24px;
+}
+.img-list div.file-panel span {
+    background: rgba(0, 0, 0, 0) url("../images/icons.png") no-repeat scroll 0 0;
+    cursor: pointer;
+    display: inline;
+    float: right;
+    height: 24px;
+    margin: 5px 1px 1px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 24px;
+}

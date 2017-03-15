@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript">
+function $id(element)
+{
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str)
+{
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+
+  for(var i=0;i<bt.length;i++)
+  {
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+
+    bt[i].onclick=function()
+    {
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++)
+      {
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->{insert_scripts files='magiczoomplus.js,easydialog.min.js,vancl_goods.js'}
+
+<div class="pt88">
+<div class="danpinBox">
+	<div class="bread-crumbs">{$ur_here}</div>
+    <script>$(".bread-crumbs").find("br").remove();</script>
+	<div class="danpinArea">
+		<div id="productTitle" class="danpinTitleTab" style="display:none;">
+	        <!-- {if $cfg.show_goodssn} 显示商品货号-->
+            <div class="brandNumArea"><span id="productcode">{$lang.goods_sn}{$goods.goods_sn}</span></div>
+            <!-- {/if} -->
+        </div>
+        <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+        <div class="danpinRight">
+        	<form action="exchange.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+            	<h2 class="ProTit">{$goods.goods_style_name}</h2>
+                <script>$(".ProTit").find("br").remove();</script>
+                <!-- {if $goods.goods_brand neq "" and $cfg.show_brand} 显示商品品牌-->
+                <div class="cuxiaoPrice ">
+                	<span class="tehuiMoney">
+                    	{$lang.goods_brand} <a href="{$goods.goods_brand_url}" >{$goods.goods_brand}</a>
+                    </span>
+                </div>
+                <!--{/if}-->
+                <!-- {if $cfg.show_goodsweight} 商品重量-->
+                <div class="cuxiaoPrice ">
+                	<span class="tehuiMoney">{$lang.goods_weight} {$goods.goods_weight}</span>
+                </div>
+                <!-- {/if} -->
+                
+                <div class="selectArea">
+                	<!-- {* 开始循环所有可选属性 *} -->
+                    <!-- {foreach from=$specification item=spec key=spec_key} -->
+                    <!-- {if $spec.attr_type eq 1} -->
+                    <div class="spec_box">
+                    	<div class="danpinColorTitle" style="display:none;"><p> {$spec.name}：</p></div>
+                        <div class="spec_list">
+                        	<ul>
+                            	<!-- {foreach from=$spec.values item=value key=key} -->
+                                <li {if $key eq 0}class="onlickSpec"{/if}>
+                                	<p> {$value.label}</p>
+                                    <span></span>
+                                    <input type="radio" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" {if $key eq 0}checked{/if} style="display:none;" />
+                                </li>
+                            	<!-- {/foreach} -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- {else} -->
+                    <div class="spec_checkbox">
+	                    <div class="danpinColorTitle"><p> {$spec.name}：</p></div>
+                        <div class="checkbox_list">
+                        	<ul>
+                            	<!-- {foreach from=$spec.values item=value key=key} -->
+                                <li><p><input type="checkbox" name="spec_{$spec_key}" value="{$value.id}" id="spec_value_{$value.id}" onclick="changePrice()" style="margin-top:2px;*margin-top:0px; float:left;"/> {$value.label}</p></li>
+                                <!-- {/foreach} -->
+                                <input type="hidden" name="spec_list" value="{$key}" />
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- {/if} -->
+                    <!-- {/foreach} -->
+                    <!-- {* 结束循环可选属性 *} -->
+                    <div class="blank0"> </div>
+                    
+                    <div class="cuxiaoPrice ">
+                		<span class="tehuiMoney">
+                        	{$lang.exchange_integral}
+                        	<span><strong id="ECS_SHOPPRICE">{$goods.exchange_integral}</strong></span>
+                        </span>
+                    </div>
+                    <div class="blank8ie"></div>
+                    <div class="shoppingNews" >
+                    	<input type="hidden" name="goods_id" value="{$goods.goods_id}" /><input type="submit" class="dp_gwbtn2" value="">
+                        <span class="blank0"></span>
+                        <span class="blank0"></span>
+                        <span class="blank0"></span>
+                        <span class="blank0"></span>
+                        <span class="blank0"></span> 
+                        <span class="blank20"></span>
+                    </div>
+                    <div class="blank0"> </div>
+                    <div id="payarea"> </div>
+                </div>
+            </form>
+        </div>
+    </div>
+	<span class="blank25"></span>
+    <div class="sideBarSettabArea">
+    	
+        <div class="RsetTabArea">
+            <div id="product_set"></div>
+            <div id="floatposition"></div>
+            <div class="RsetTabCon">
+            	<span class="blank15"></span>
+                <div class="area1"><div>
+                <div id="anchor1"></div>
+                <h3>产品描述：</h3>
+                <span class="blank8"></span>
+                <p class="productMS" style="line-height: 20px">{$goods.goods_brief} </p>
+                <span class="blank20"></span> 
+                <div id="anchor2"></div>
+                <div id="attr" style="display:block;">
+                    <h3> 产品属性：</h3>
+                    <div class="dpShuXing">
+                        <ul>
+                            <!--{if $properties}--> 
+                            <!-- {foreach from=$properties item=property_group key=key} --> 
+                            <!-- {foreach from=$property_group item=property} -->
+                            <li ><span>{$property.name|escape:html}：</span><a class="track" href="javascript:void(0);">{$property.value}</a></li>
+                            <!-- {/foreach}--> 
+                            <!-- {/foreach}--> 
+                            <!-- {/if} -->
+                        </ul>
+                        <span class="blank0"></span>
+                    </div>
+                </div>
+            	<div id="anchor3"></div>
+                <h3>详情图片：</h3>
+                <span class="blank8"></span>
+                <h3 style="font-weight: normal;"> <span>注：</span><a target="_self" href="#vertical" name="item-item-info-tip" class="track">商品实际颜色以静物图为准</a></h3>
+                <span class="blank5"></span>
+                <div class="imgCon" id="relatedshow">
+                	<div class="DetailPicture">{$goods.goods_desc}</div>
+                </div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div id="PageFooter">
+	<div class="PageFooter"><!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --></div>
+</div>
+</body>
+
+<script type="text/javascript">
+<!-- {literal} -->
+onload = function()
+{
+  fixpng();
+}
+<!-- {/literal} -->
+</script>
+</html>

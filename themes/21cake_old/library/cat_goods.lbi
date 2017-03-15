@@ -1,0 +1,34 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="vancl_tab0114">
+  <div class="vancl_tabtitle"><span>{insert name='ads_pro' cat_name=$goods_cat.name type='标题广告'}</span>
+    <div><a class="track" href="{$goods_cat.url}"></a></div>
+  </div>
+  <span class="blank10"></span>
+  <div class="vancl_tableft"> 
+    <!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
+    <div class="tablef_con">
+      <dl>
+        <dt>{$cat.name}</dt>
+       
+        <dd style="height:42px; overflow:hidden;">  <!--{foreach from=$cat.children item=childr name=foo}--><a class="track" href="{$childr.url}">{$childr.name}</a><!--{/foreach}--></dd>
+        
+      </dl>
+    </div>
+    <!--{/foreach}-->
+    
+    <div class="tablef_con"> {insert name='ads_pro' cat_name=$goods_cat.name type='分类左侧广告1'}</div>
+    <div class="tablef_con"> {insert name='ads_pro' cat_name=$goods_cat.name type='分类左侧广告2'}</div>
+    <div class="tablef_catelink"><a class="track" href="{$goods_cat.url}">{$goods_cat.name|escape:html}&nbsp;&gt;</a></div>
+  </div>
+  <div class="vancl_tabrig">
+    <ul>
+      <li> {insert name='ads_pro' cat_name=$goods_cat.name type='分类右侧广告1'}</li>
+      <li> {insert name='ads_pro' cat_name=$goods_cat.name type='分类右侧广告2'}</li>
+      <li> {insert name='ads_pro' cat_name=$goods_cat.name type='分类右侧广告3'}</li>
+      <li> {insert name='ads_pro' cat_name=$goods_cat.name type='分类右侧广告4'}</li>
+      <li class="AreimgMno"> {insert name='ads_pro' cat_name=$goods_cat.name type='分类右侧广告5'}</li>
+    </ul>
+  </div>
+  
+  
+</div>

@@ -1,0 +1,52 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+<script type="text/javascript">
+{foreach from=$lang.profile_js item=item key=key}
+  var {$key} = "{$item}";
+{/foreach}
+</script>
+<section class="wrap wrapSh radius3" style="padding-top:1rem;padding-bottom:1rem;">
+  <form name="formPassword" action="{:url('user/add_booking')}" method="post" onsubmit="return addBooking();">
+   <section class="order_box" style="padding-top:0;padding-bottom:0;">
+    <div class="table_box table_box2">
+            <dl>
+              <dd class="dd1"><strong>{$lang.booking_goods_name}</strong></dd>
+              <span class="dd2">{$goods.goods_name}</span>
+            </dl>
+			<dl>
+              <dd class="dd1"><strong>{$lang.booking_amount}</strong></dd>
+             <input name="number" type="text"  value="{$goods.goods_number}" class="dd2" />
+            </dl>
+			<dl>
+              <dd class="dd1"><strong>{$lang.describe}</strong></dd>
+             <textarea name="desc" wrap="virtual" class="dd2" >{$goods_attr}{$goods.goods_desc|escape}</textarea>
+            </dl>
+			<dl>
+              <dd class="dd1"><strong>{$lang.contact_username}</strong></dd>
+             <input name="linkman" type="text"   value="{$goods.consignee|escape}" class="dd2" />
+            </dl>
+			<dl>
+              <dd class="dd1"><strong>{$lang.email_address}</strong></dd>
+             <input name="email" type="text"   value="{$goods.email|escape}" class="dd2" />
+            </dl>
+			<dl>
+              <dd class="dd1"><strong>{$lang.contact_phone}</strong></dd>
+             <input name="tel" type="text"   value="{$goods.tel|escape}" class="dd2" />
+            </dl>
+		</div>
+   		<ul>
+   </section>
+   <div class="two-btn ect-padding-tb ect-padding-lr ect-margin-tb text-center">
+       <input name="id" type="hidden" value="{$goods.id}" />
+       <input name="rec_id" type="hidden" value="{$goods.rec_id}" />
+	   <input name="submit" type="submit" value="{$lang.submit_booking_goods}" class="c-btn3 radius20" style="font-size:.9rem"   />
+   </div>
+   </form>
+   </section>
+</div>
+
+
+</div>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

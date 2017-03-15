@@ -1,0 +1,22 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="con">
+<div style="height:6.2rem;"></div>
+  <div style="position:fixed; top:0; width:100%;">
+  <header id="header">
+        <div class="header_l"> <a class="ico_10" href="{:url('index/index')}"> 首页 </a> </div>
+        <h1>积分兑换</h1>
+        <div class="header_r"> <a class="ico_01" href="{:url('flow/cart')}"> 购物车 </a></div>
+  </header> 
+  </div>
+<!-- #BeginLibraryItem "/library/goods_list_exchange.lbi" --><!-- #EndLibraryItem -->
+</div>
+</div>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> 
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+<script type="text/javascript">
+if({$show_asynclist} == 1){
+get_asynclist("{:url('exchange/asynclist_list', array('page'=>$this->_var['page'], 'sort'=>$this->_var['sort'], 'order'=>$this->_var['order']))}" , '__TPL__/images/loader.gif');
+}
+</script>
+</body>
+</html>

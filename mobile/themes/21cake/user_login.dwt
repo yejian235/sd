@@ -1,0 +1,52 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+ <!--#登录界面 start--> 
+<!-- {if $action eq 'login' or $action eq 'register'} -->
+<section class="uWrap" style="padding-bottom:5rem">
+  <div id="leftTabBox" class="loginBox">
+    <div class="bd">
+        <div class="table_box">
+           <form name="formLogin" action="{:url('user/login')}" method="post" class="validforms">
+            <dl class="loginUsr">
+              <dd>
+                <input placeholder="{$lang.username}/{$lang.mobile}/{$lang.email}" name="username" type="text"  class="inputBgr1" id="username" />
+              </dd>
+              <dd>
+                <input placeholder="{$lang.label_password}"  name="password" type="password" class="inputBgr2" />
+              </dd>
+            
+            </dl>
+            <dl>
+              <dd>
+                <input type="checkbox" value="1" name="remember" id="remember" style="vertical-align:middle; zoom:150%;" /><label for="remember"> {$lang.remember}</label>
+				<!-- {if $anonymous_buy eq 1 && $step eq 'flow'} 是否允许未登录用户购物 -->
+      <a href="{:url('flow/consignee',array('direct_shopping'=>1))}" style="float:right;">{$lang.direct_shopping}</a>
+      <!-- {/if} -->
+              </dd>
+            </dl>
+            <dl>
+              <dd>
+                <input type="hidden" name="act" value="act_login" />
+                <input type="hidden" name="back_act" value="{$back_act}" />
+                <input type="submit" name="submit"  value="{$lang.now_landing}" class="loginSubmit" />
+              </dd>
+            </dl>
+          </form>
+            <dl class="loginDown">
+            	<dd><a href="{:url('user/get_password_phone')}">{$lang.forgot_password}</a></dd>
+                <dd><a href="{:url('user/register')}">{$lang.free_registered}</a></dd>
+            </dl>
+          <div class="hezuo">
+            <p class="t">{$lang.third_login}</p>
+            <p class="b"><a href="{:url('user/third_login',array('type'=>'qq'))}"><img src="__TPL__/images/quicklogin/qq.png"></a>
+            <a href="{:url('user/third_login',array('type'=>'sina'))}"><img src="__TPL__/images/quicklogin/weibo.png"></a></p>
+          </div>
+        </div>
+      </ul>
+    </div>
+    </div>
+  </div>
+</section>
+<!--{/if}--> 
+<!--#登录界面 end--> 
+</body>
+</html>

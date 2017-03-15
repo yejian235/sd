@@ -1,0 +1,342 @@
+<section class="wrap">
+  <form action="{:url('flow/done')}" method="post" name="theForm" id="theForm" onSubmit="return checkOrderForm(this)">
+    <script type="text/javascript">
+        var flow_no_payment = "{$lang.flow_no_payment}";
+        var flow_no_shipping = "{$lang.flow_no_shipping}";
+        </script>
+    <div class="jiesuangg"> <span class="bTitle">收货信息</span>
+      <section class="order_box radius3" style="padding:0 1rem; box-sizing:border-box;">
+        <div class="shInfo"> <a href="{:url('flow/consignee_list')}">
+          <dl>
+            <dt>
+              {$consignee.consignee|escape} {$consignee.mobile}
+            </dt>
+            <dl>
+              {$consignee.address}
+            </dl>
+          </dl>
+          </a></div>
+      </section>
+    </div>
+
+    <!--{if $total.real_goods_count neq 0}-->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.shipping_method}</span>
+      <div id="radio_group_01" class="radio_group_01">
+        <div class="list_nav">
+          <ul>
+            <!-- {foreach from=$shipping_list item=shipping} 循环配送方式 -->
+            <li>
+              <div data-type="radio" class="radio{if $order.shipping_id eq $shipping.shipping_id} selected{/if}">
+                <input id="shipping_{$shipping.shipping_id}" name="shipping" type="radio" value="{$shipping.shipping_id}" {if $order.shipping_id eq $shipping.shipping_id}checked="true"{/if} supportCod="{$shipping.support_cod}" insure="{$shipping.insure}" onclick="selectShipping(this)" style="display:none" />
+                <label for="shipping_{$shipping.shipping_id}">
+                <div class="label">{$shipping.shipping_name} [{$shipping.format_shipping_fee}]</div>
+                </label>
+              </div>
+            </li>
+            <!-- {/foreach} 循环配送方式 -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--{else}-->
+    <input name="shipping" type="radio" value="-1" checked="checked"  style="display:none" />
+    <!--{/if}-->
+
+    <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.payment_method}</span> 
+      <div id="radio_group_01" class="radio_group_01">
+        <div class="list_nav">
+          <ul>
+            <!-- {foreach from=$payment_list item=payment} -->
+            <!-- 循环支付方式 -->
+            <li>
+              <div data-type="radio" class="radio{if $order.pay_id eq $payment.pay_id} selected{/if}">
+                <input id="payment_{$payment.pay_id}" type="radio" name="payment" value="{$payment.pay_id}" {if $order.pay_id eq $payment.pay_id}checked{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if} style="display:none"  />
+                <label for="payment_{$payment.pay_id}">
+                <div class="label">{$payment.pay_name} [{$payment.format_pay_fee}]</div>
+                </label>
+              </div>
+            </li>
+            <!-- {/foreach} 循环支付方式 -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--{else}-->
+    <input name="payment"  type="radio" value = "-1" checked="checked"  style="display:none"/>
+    <!--{/if}-->
+    
+
+	<script type="text/javascript">
+	  function fdiv(radio_w){
+		  if(!$(radio_w+" .list_nav ul li .radio").hasClass("selected")){
+			  $(radio_w+" .list_nav").find("ul li:first-child").children(".radio").addClass("selected");
+		  }
+		  $(radio_w+" .list_nav ul li").click(function() {
+			  $(this).children('.radio').addClass("selected").end().siblings('li').children('.radio').removeClass("selected");
+			  if(radio_w == '.radio_group_04'){
+				$(this).find(".invoice").removeClass("hide").end().siblings('li').find(".invoice").addClass("hide");
+				return false;
+			  }
+		  });
+	 }
+	 jQuery(function($){
+			fdiv(".radio_group_01");
+			fdiv(".radio_group_02");
+			fdiv(".radio_group_03");
+			fdiv(".radio_group_04");
+			fdiv(".radio_group_05");
+			fdiv(".radio_group_06");
+			fdiv(".radio_group_07");
+	 });
+	</script>
+        
+    <div class="jiesuangg" style="display:none"> <span class="bTitle">送货时间</span>
+      <div id="radio_group_03" class="radio_group_03">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" pay_id="1" class="radio">
+                <label>
+                <div class="label">不限送货时间</div>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div data-type="radio" pay_id="1" class="radio">
+                <label>
+                <div class="label">工作日送货(适合于办公地址)</div>
+                </label>
+              </div>
+            </li>
+            <li>
+              <div data-type="radio" pay_id="1" class="radio">
+                <label>
+                <div class="label">双休日、假日送货(适合于家庭地址)</div>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- {if $pack_list} 是否有包装 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.goods_package}</span>
+      <div id="radio_group_06" class="radio_group_06">
+        <div class="list_nav">
+          <ul>
+          	
+            <li>
+              <div data-type="radio" class="radio">
+              	<input type="radio" id="pack_0" name="pack" value="0" {if $order.pack_id eq 0}checked="true"{/if} onclick="selectPack(this)" style="display:none" />
+                <label for="pack_0">
+                <div class="label">{$lang.no_pack}</div>
+                </label>
+              </div>
+            </li>
+            <!-- {foreach from=$pack_list item=pack} 循环包装 -->
+         	<li>
+              <div data-type="radio" invoice="0" class="radio">
+              	<input type="radio" id="pack_{$pack.pack_id}" name="pack" value="{$pack.pack_id}" {if $order.pack_id eq $pack.pack_id}checked="true"{/if} onclick="selectPack(this)" style="display:none" />
+                <label for="pack_{$pack.pack_id}">
+                <div class="label">{$pack.pack_name}[{$pack.format_pack_fee}]</div>
+                </label>
+              </div>
+            </li>
+            <!-- {/foreach} 循环包装 -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} 是否使用包装 -->
+    
+    <!-- {if $card_list} 是否有贺卡 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.goods_card}</span>
+      <div id="radio_group_07" class="radio_group_07">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+              	<input type="radio" id="card_0" name="card" value="0" {if $order.card_id eq 0}checked="true"{/if} onclick="selectCard(this)" style="display:none" />
+                <label id="card_0">
+                <div class="label">{$lang.no_card}</div>
+                </label>
+              </div>
+            </li>
+            <!-- {foreach from=$card_list item=card} 循环贺卡 -->
+         	<li>
+              <div data-type="radio" invoice="0" class="radio">
+              	<input type="radio" id="card_{$card.card_id}" name="card" value="{$card.card_id}" {if $order.card_id eq $card.card_id}checked="true"{/if} onclick="selectCard(this)" style="display:none" />
+                <label for="card_{$card.card_id}">
+                <div class="label">{$card.card_name}[{$card.format_card_fee}]</div>
+                </label>
+              </div>
+            </li>
+            <!-- {/foreach} 循环贺卡 -->
+          </ul>
+        </div>
+      </div>
+    </div>
+	<!-- {/if} 是否有贺卡 -->
+    
+    <!-- {if $allow_use_surplus} 是否使用余额 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.use_surplus}</span>
+      <div id="radio_group_05" class="radio_group_05">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+                <label>
+                <div class="label"><input name="surplus" type="text" class="inputBoxByECT" id="ECS_SURPLUS" size="10" value="{$order.surplus|default:0}" onblur="changeSurplus(this.value)" {if $disable_surplus}disabled="disabled"{/if} />
+              {$lang.your_surplus}{$your_surplus|default:0} <span id="ECS_SURPLUS_NOTICE" class="notice"></span></div>
+                <div class="invoice hide" style="display:none"></div>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} 是否使用余额 -->
+    <!-- {if $allow_use_integral} 是否使用积分 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.use_integral}</span>
+      <div id="radio_group_05" class="radio_group_05">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+                <label>
+                <div class="label"><input name="integral" type="text" class="inputBoxByECT" id="ECS_INTEGRAL" onblur="changeIntegral(this.value)" value="{$order.integral|default:0}" size="10" />
+              {$lang.can_use_integral}:{$your_integral|default:0} {$points_name}，{$lang.noworder_can_integral}{$order_max_integral}  {$points_name}. <span id="ECS_INTEGRAL_NOTICE" class="notice"></span></div>
+                <div class="invoice hide" style="display:none"></div>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} 是否使用积分 -->
+    <!-- {if $allow_use_bonus} 是否使用红包 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.use_bonus}</span>
+      <div id="radio_group_05" class="radio_group_05">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+                <label>
+                <div class="label">{$lang.select_bonus} <select name="bonus" onchange="changeBonus(this.value)" id="ECS_BONUS" style="border:1px solid #ccc;">
+                      <option value="0" {if $order.bonus_id eq 0}selected{/if}>{$lang.please_select}</option>
+                      <!-- {foreach from=$bonus_list item=bonus} -->
+                      <option value="{$bonus.bonus_id}" {if $order.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.type_name}[{$bonus.bonus_money_formated}]</option>
+                      <!-- {/foreach} -->
+                    </select></div>
+                <div class="invoice hide"></div>
+                </label>
+              </div>
+            </li>
+         	<li>
+              <div data-type="radio" invoice="0" class="radio">
+                <label>
+                <div class="label"><input name="bonus_sn" type="text" class="inputBoxByECT" size="15" value="{$order.bonus_sn}" placeholder="{$lang.input_bonus_no}" onBlur="validateBonus(document.forms['theForm'].elements['bonus_sn'].value)" /></div>
+                <div class="invoice hide"></div>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} 是否使用红包 -->
+
+    <!-- {if $inv_content_list} 能否开发票 -->
+    <div class="jiesuangg"> <span class="bTitle">发票信息 <input name="need_inv" type="checkbox" class="input" id="ECS_NEEDINV" onclick="changeNeedInv()" value="1" {if $order.need_inv}checked="true"{/if} style="display:none" /></span>
+      <div id="radio_group_04" class="radio_group_04">
+        <div class="list_nav">
+          <ul>
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+                <label onClick="document.getElementById('ECS_NEEDINV').checked = true;document.getElementById('ECS_NEEDINV').click();">
+                <div class="label">不开发票</div>
+                <div class="invoice hide" style="display:none"></div>
+                </label>
+              </div>
+            </li>
+            <li> 
+              <div data-type="radio" pay_id="1" class="radio">
+                <label onClick="document.getElementById('ECS_NEEDINV').checked = false;document.getElementById('ECS_NEEDINV').click();">
+                <div class="label">开具发票</div>
+                <div class="invoice hide" style="margin-top:12px; line-height:36px;">
+                  <input name="inv_payee" type="text"  class="input" id="ECS_INVPAYEE" size="20" value="{$order.inv_payee}" onblur="changeNeedInv()" placeholder="{$lang.invoice_title}" />
+                  <!-- {if $inv_type_list} -->
+                    {$lang.invoice_type}
+                    <select name="inv_type" id="ECS_INVTYPE" onchange="changeNeedInv()" style="border:1px solid #ccc;">
+                    {html_options options=$inv_type_list selected=$order.inv_type}</select>
+                    <!-- {/if} --><br>
+                    {$lang.invoice_content}
+	                <select name="inv_content" id="ECS_INVCONTENT" onchange="changeNeedInv()" style="border:1px solid #ccc;">
+                    {html_options values=$inv_content_list output=$inv_content_list selected=$order.inv_content}
+                    </select>
+                </div>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} -->
+           
+    <!-- {if $how_oos_list} 是否使用缺货处理 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.booking_process}</span>
+      <div id="radio_group_05" class="radio_group_05">
+        <div class="list_nav">
+          <ul>
+          	<!-- {foreach from=$how_oos_list key=how_oos_id item=how_oos_name} -->
+            <li>
+              <div data-type="radio" invoice="0" class="radio">
+              	<input name="how_oos" id="how_oos_{$how_oos_id}" type="radio" value="{$how_oos_id}" {if $order.how_oos eq $how_oos_id}checked{/if} onclick="changeOOS(this)" style="display:none" />
+                <label for="how_oos_{$how_oos_id}">
+                <div class="label">{$how_oos_name}</div>
+                <div class="invoice hide" style="display:none"></div>
+                </label>
+              </div>
+            </li>
+            <!-- {/foreach} -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- {/if} 缺货处理结束 -->
+    <div class="jiesuangg"> <span class="bTitle">{$lang.order_postscript}</span>
+      <div id="radio_group_05" class="radio_group_05">
+        <div class="list_nav">
+          <ul>
+            <textarea name="postscript" placeholder='请输入订单附言' id="postscript" style="border:none; width:100%; height:80px;">{$order.postscript|escape}</textarea>
+          </ul>
+        </div>
+      </div>
+    </div>
+     <div class="spxx">
+    	<div class="spxx_t"><img src="__TPL__/images/paper_01.png" width="690" height="15"></div>
+    	<div class="spxx_d">
+        	<ul class="splb1">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <!-- {foreach from=$goods_list item=goods} -->
+              <tr>
+                <td style="border-bottom:1px #ddd dashed;line-height: 0.8rem;padding: 0.8rem;"><a href="{:url('goods/index',array('id'=>$this->_var['goods']['goods_id']))}"><br>
+{$goods.goods_name} {$goods.goods_attr|nl2br|nl2br}</a><br><br>
+
+                售价：{$goods.formated_subtotal} 数量：{$goods.goods_number}</td>
+              </tr>
+              <!-- {/foreach} -->
+            </table>
+          </ul>
+          <ul class="splb2" style="text-align: right;line-height: 24px;"><!-- #BeginLibraryItem "/Library/order_total.lbi" --><!-- #EndLibraryItem --></ul>
+        </div>
+    </div>
+    <input type="hidden" name="step" value="done" />
+    <div class="m30"><input type="submit" id="OrderCheckoutNextBtn" class="button active_button" value="{$lang.order_submit}" /></div>
+  </form>
+</section>

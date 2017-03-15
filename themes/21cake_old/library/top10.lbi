@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="fbListOrder">
+    <div class="sport-bg">
+      <h2 class="fbListTitle02"> <span>一周销量排行</span> </h2>
+    </div>
+    <span class="blank0"></span>
+    <div class="Hot_Ranking">
+      <div style="display: block;" id="con_hotorder0_1"> <span class="blan5"></span><span class="blank5"></span>
+        <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+
+        <ul>
+          <li class="topImg1"><a target="_blank" href="{$goods.url}" class="track"> <img alt="{$goods.name|escape:html}" src="{$goods.thumb}" style="display: inline;"></a></li>
+          <li class="topWord1">
+            <p> <span class="topNum1 <!-- {if $smarty.foreach.top_goods.iteration<4}-->top123<!-- {/if} -->">{$smarty.foreach.top_goods.iteration}</span></p>
+            <span class="blank5"></span>
+            <p class="FBListPruName"> <a target="_blank" href="{$goods.url}" class="track">{$goods.short_name}</a></p>
+            <span class="blank5"></span>
+            <p class="Sprice"> {$lang.shop_price}{$goods.price}</p>
+            <span class="blank5"></span></li>
+        </ul>
+      
+        <span class="blank5"></span>
+         <!-- {/foreach} -->
+        <span class="blank0"></span> </div>
+    </div>
+  </div>
+    <span class="blank15"></span>

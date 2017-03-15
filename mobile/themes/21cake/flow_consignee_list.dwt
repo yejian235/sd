@@ -1,0 +1,14 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+<div class="jiesuangg">
+<section class="order_box radius3" style="padding:0 1rem; box-sizing:border-box;" id="J_ItemList">
+   <div class="single_item"></div>
+   <a href="javascript:;" style="text-align:center" class="get_more"></a>
+</section>
+</div>
+<div> <a href="{:url('flow/consignee')}" type="botton" class="button active_button">{$lang.add_address}</a> </div>
+</div>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+<script type="text/javascript" src="__PUBLIC__/js/jquery.more.js"></script> 
+<script type="text/javascript">
+get_asynclist('index.php?m=default&c=flow&a=consignee_list' , '__TPL__/images/loader.gif');</script>
+</body></html>

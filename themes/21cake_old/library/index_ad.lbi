@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="IndexBan">
+	<div class="IndexBan slideBox">
+        <div class="bd">
+        	<ul>
+            	<!--{foreach from=$flash name=myflash item=flash}-->
+            	<li style="background:url({$flash.src}) center 0 no-repeat;"><a href="{$flash.url}" target="_blank"></a></li>
+            	<!--{/foreach}-->
+            </ul>
+        </div>
+        <div class="hd">
+        	<ul>
+            	<!--{foreach from=$flash name=myflash item=flash}-->
+            	<li></li>
+                <!--{/foreach}-->
+            </ul>
+        </div>
+    </div>
+    <script>
+    	jQuery(".slideBox").slide({mainCell:".bd ul",effect:"fold",autoPlay:true});
+		$(window).resize(function(){
+			var ww=$(window).width(),ulli=$(".slideBox .bd ul,.slideBox .bd li");
+			ulli.css({width:ww});
+		});
+    </script>
+</div>

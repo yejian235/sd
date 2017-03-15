@@ -1,0 +1,55 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="user-tags">
+  <div class="user-account-detail user-bonus" style="padding:1rem;">
+   <!-- {if $tags} -->
+  <ul>
+	<!-- {foreach from=$tags item=tag}-->
+    <li class="tag_list_li tag_round" role="alert" id="tag_{$tag.tag_id}">
+      <button type="button" class="close tag_list_botton" data-dismiss="alert" id="_{$tag.tag_id}" value="{$tag.tag_words|escape:html}"><span class="tag_list_del">&times;</span></button>
+      <a href="{:url('category/index', array('keywords'=>$this->_var['tag']['tag_words']))}" title="{$tag.tag_words|escape:html}" class="tag_list_a" >{$tag.tag_words|escape:html}</a>
+	</li>
+    <!--{/foreach}-->
+    <!-- {foreach from=$tags item=tag}-->
+    <li class="tag_list_li tag_round" role="alert" id="tag_{$tag.tag_id}">
+      <button type="button" class="close tag_list_botton" data-dismiss="alert" id="_{$tag.tag_id}" value="{$tag.tag_words|escape:html}"><span class="tag_list_del">&times;</span></button>
+      <a href="{:url('category/index', array('keywords'=>$this->_var['tag']['tag_words']))}" title="{$tag.tag_words|escape:html}" class="tag_list_a" >{$tag.tag_words|escape:html}</a>
+	</li>
+    <!--{/foreach}-->
+    <!-- {foreach from=$tags item=tag}-->
+    <li class="tag_list_li tag_round" role="alert" id="tag_{$tag.tag_id}">
+      <button type="button" class="close tag_list_botton" data-dismiss="alert" id="_{$tag.tag_id}" value="{$tag.tag_words|escape:html}"><span class="tag_list_del">&times;</span></button>
+      <a href="{:url('category/index', array('keywords'=>$this->_var['tag']['tag_words']))}" title="{$tag.tag_words|escape:html}" class="tag_list_a" >{$tag.tag_words|escape:html}</a>
+	</li>
+    <!--{/foreach}-->
+    <!-- {foreach from=$tags item=tag}-->
+    <li class="tag_list_li tag_round" role="alert" id="tag_{$tag.tag_id}">
+      <button type="button" class="close tag_list_botton" data-dismiss="alert" id="_{$tag.tag_id}" value="{$tag.tag_words|escape:html}"><span class="tag_list_del">&times;</span></button>
+      <a href="{:url('category/index', array('keywords'=>$this->_var['tag']['tag_words']))}" title="{$tag.tag_words|escape:html}" class="tag_list_a" >{$tag.tag_words|escape:html}</a>
+	</li>
+    <!--{/foreach}-->
+  </ul>
+  <div style="clear:both"></div> 
+  <!-- {/if} -->
+  
+  </div>
+</div>
+</ul>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<script type="text/javascript">
+$(function(){
+	$(".close").click(function(){
+		var tag_words = $(this).val();
+		var id = this.id;
+		$("#tag"+id).css('display','none'); 
+		$.get("{:url('user/del_tag')}", {tag_wrods:tag_words}, function(data){alert('d');
+			if(data.status == 0){
+				alert(data.msg);
+			}
+		}, 'json');
+	});
+})
+</script>
+
+</body>
+</html>

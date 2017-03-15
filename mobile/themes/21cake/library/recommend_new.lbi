@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $new_goods} -->
+<!--{foreach from=$new_goods item=goods name=new_goods}-->
+<li><a href="{$goods.url}"><img src="{$goods.goods_img}" /></a><span>{$goods.name}</span>
+<!-- {if $goods.promote_price neq ""} -->
+<span>{$goods.promote_price}</span>
+<!-- {else}-->
+<span>{$goods.shop_price}</span>
+<!-- {/if} -->
+</li>
+<!--{/foreach}-->
+<!-- {/if} -->
+<li>fasfasfasfsafasfsadfasd fafsd ads fsadf as</li>

@@ -1,0 +1,12 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+ <section class="wrap message_list wrapSh radius3"  id="J_ItemList">
+ <section class="order_box single_item" style="padding:1rem 0;">
+  </section>
+  <a href="javascript:;" style="text-align:center" class="get_more"></a>
+</section>
+</section>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.more.js"></script> 
+<script type="text/javascript">
+get_asynclist('{:url("user/msg_list")}' , '__TPL__/images/loader.gif');
+</script>
+</body></html>

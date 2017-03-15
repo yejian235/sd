@@ -1,0 +1,36 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="danpin_colLef">
+	<div class="danpinColCenter">
+    	<div class="bigImg" id="vertical">
+        	<a href="{$pictures.0.img_url}" class="MagicZoomPlus" id="Zoomer" rel="selectors-change: mouseover; hint-text: ; selectors-effect: false; selectors-class: onlickImg; zoom-distance: 22;zoom-width: 440; zoom-height: 400;"><img id="midimg" src="{$goods.goods_img}"></a>
+            <div id="winSelector" style="left: 0px; top: 36px; display: none; "></div>
+        </div>
+        <div class="fangdaArea">
+        	<p class="fangda soucang"> <span class="sprites"></span> <span><a class="dp_scbtn track" href="javascript:collect({$goods.goods_id})">收藏商品</a></span> </p>
+        </div>
+	</div>
+  
+	<div class="danpinLeft">
+    	<div class="smallImg">
+        	<div class="smallImgUp upper"></div>
+            <ul id="imageMenu">
+            	<!-- {if $pictures}-->
+                <!-- {foreach from=$pictures item=picture}-->
+                <li class="track"><center><a class="SpriteSmallImgs" href="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}" rel="zoom-id: Zoomer" rev="{if $picture.img_url}{$picture.img_url}{else}{$picture.thumb_url}{/if}"><img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" alt="{$goods.goods_name}"></a></center></li>
+                <!--{/foreach}--> 
+                <!-- {/if}-->
+            </ul>
+            <div class="smallImgDown downHover"></div>
+        </div>
+        <script>
+        	$(function(){
+				$(".smallImgUp,.smallImgDown").css({"opacity":0});
+				$(".smallImg").hover(function(){
+					$(".smallImgUp,.smallImgDown").stop(true,false).animate({"opacity":1});
+				},function(){
+					$(".smallImgUp,.smallImgDown").stop(true,false).animate({"opacity":0});
+				});
+			});
+        </script>
+    </div>
+</div>

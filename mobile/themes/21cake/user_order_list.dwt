@@ -1,0 +1,13 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+      <section class="wrap order_list order_listU radius3" id="J_ItemList">
+    	  <section class="order_box padd1 single_item">
+  		  </section>
+   	 <a href="javascript:;" style="text-align:center" class="get_more"></a>
+   	 </section>
+<script type="text/javascript">
+{foreach from=$lang.merge_order_js item=item key=key}
+    var {$key} = "{$item}";
+{/foreach}
+get_asynclist('index.php?m=default&c=user&a=async_order_list&pay={$pay}' , '__TPL__/images/loader.gif');
+</script> 
+</body></html>

@@ -1,0 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="rchannel_scroll"><h3>浏览了您最近浏览商品的用户还看了以下商品:</h3><div class="rchannel_bt_left"><a id="leftButton">left</a></div><div style="width:940px;float:left;"><div  class="rchannel_newProductList"><div  id="slider"><ul>
+    {insert name='browse_related'}
+    </ul></div></div></div><div style="float:right;" class="rchannel_bt_right"><a id="rightButton">right</a></div><span class="rchannel_blank15"></span><div class="rchannel_bar scrollbar2"></div><div class="rchannel_SvtProLinex_a"></div></div>

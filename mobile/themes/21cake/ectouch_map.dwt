@@ -1,0 +1,27 @@
+<!-- #BeginLibraryItem "/library/shangchuang_header.lbi" --><!-- #EndLibraryItem -->
+
+<style type="text/css">
+html,body {margin:0px; padding:0px; height:100%}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=1v0DK2dBBCvzXILG5P7nMsz1&v=2.0"></script>
+<div id="allmap" style="width:100%; height:100%"></div>
+<script type="text/javascript">
+// 百度地图API功能
+var map = new BMap.Map("allmap");
+var point = new BMap.Point(116.331398,39.897445);
+map.centerAndZoom(point,12);
+map.addControl(new BMap.ZoomControl()); //添加地图缩放控件
+
+// 创建地址解析器实例
+var myGeo = new BMap.Geocoder();
+// 将地址解析结果显示在地图上,并调整地图视野
+myGeo.getPoint("{$address}", function(point){
+  if (point) {
+    map.centerAndZoom(point, 16);
+    map.addOverlay(new BMap.Marker(point));
+  }
+});
+</script>
+
+</body>
+</html>

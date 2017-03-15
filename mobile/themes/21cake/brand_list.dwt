@@ -1,0 +1,38 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="con">
+  <header id="header" style="z-index:1">
+    <div class="header_l"> <a class="ico_10" href="{:url('index/index')}"> 首页 </a> </div>
+    <h1>品牌街</h1>
+    <div class="header_r"> <a class="ico_01" href="{:url('flow/cart')}"> 购物车 </a></div>
+  </header>
+
+
+<!--{if $show_asynclist eq 1}-->
+    <div class="bran_list" id="J_ItemList" style="opacity:1;">
+		<ul class="single_item">
+		</ul>
+		<a href="javascript:;" class="get_more"></a> </div>
+	</div>
+<!--{else}-->
+	<div class="bran_list" id="J_ItemList" style="opacity:1;">
+		<ul class="single_item">
+	<!--{foreach from=$list item=brand}-->
+			<li>
+			  <p><a href="{$brand.url}"><img src="{$brand.brand_banner}"></a><span>{$brand.brand_name}</span></p>
+			</li>
+    <!--{/foreach}-->
+		</ul>
+	</div>
+      <span class="blank10"></span> 
+{include file='library/page.lbi '}
+    <span class="blank10"></span>
+<!--{/if} -->
+
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<script type="text/javascript">
+if({$show_asynclist} == 1){
+	get_asynclist("{:url('brand/asynclist', array('page'=>$this->_var['page'], 'sort'=>$this->_var['sort'], 'order'=>$this->_var['order']))}" , '__TPL__/images/loader.gif');
+}
+</script> 
+</body></html>

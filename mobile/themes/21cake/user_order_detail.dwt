@@ -1,0 +1,213 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+    <section class="spxx">
+    <div class="spxx_t"><img src="__TPL__/images/paper_01.png" width="690" height="15"></div>
+    <div class="spxx_d">
+        <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table" style="border-bottom:1px #CCCCCC dashed">
+      	<tr>
+        	<td><strong>订单状态：</strong>{$order.order_status} {$order.pay_status} {$order.shipping_time}</td>
+        </tr>
+        <tr>
+        	<td><strong>订单编号：</strong>{$order.order_sn}</td>
+        </tr>
+        <tr>
+        	<td><strong>订单金额：</strong>{$order.formated_total_fee}</td>
+        </tr>
+        <tr>
+        	<td><strong>下单时间：</strong>{$order.formated_add_time}</td>
+        </tr>
+        <!--{if $order.to_buyer}-->
+        <tr>
+          <td><strong>{$lang.detail_to_buyer}：</strong>{$order.to_buyer}</td>
+        </tr>
+        <!-- {/if} -->
+        <!--{if $virtual_card}-->
+        <tr>
+          <td><strong>{$lang.virtual_card_info}：</strong><br>
+          	<!--{foreach from=$virtual_card item=vgoods}--> 
+            <!--{foreach from=$vgoods.info item=card}--> 
+            <hr style="border:none;border-top:1px #CCCCCC dashed; margin:5px 0" />
+            <!--{if $card.card_sn}--><strong>{$lang.card_sn}:</strong><span style="color:red;">{$card.card_sn}</span><br><!--{/if}-->
+            <!--{if $card.card_password}--><strong>{$lang.card_password}:</strong><span style="color:red;">{$card.card_password}</span><br><!--{/if}--> 
+            <!--{if $card.end_date}--><strong>{$lang.end_date}:</strong>{$card.end_date}<br><!--{/if}-->
+            <!--{/foreach}--> 
+            <!--{/foreach}--></td>
+        </tr>
+        <!--{/if}-->
+       
+      </table>
+
+      <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+        <tr>
+          <td><strong>{$lang.consignee_name}：</strong>{$order.consignee}</td>
+          </tr>
+        <tr>
+          <td align="left"><strong>{$lang.email_address}：</strong>{$order.email}</td>
+          </tr>
+        <!-- {if $order.exist_real_goods} -->
+        <tr>
+          <td align="left"><strong>{$lang.detailed_address}：</strong>{$order.address} 
+            <!-- {if $order.zipcode} --> 
+            [{$lang.postalcode}: {$order.zipcode}] 
+            <!-- {/if} --></td>
+          </tr>
+        <!-- {/if}-->
+        <tr>
+          <td align="left"><strong>{$lang.phone}：</strong>{$order.tel} </td>
+          </tr>
+        <!-- {if $order.exist_real_goods} -->
+        <tr>
+          <td align="left"><strong>{$lang.deliver_goods_time}：</strong>{$order.best_time}</td>
+          </tr>
+        <!--{/if}-->
+      </table>
+
+        <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+      	  <!-- {foreach from=$goods_list item=goods} -->
+          <tr>
+            <td rowspan="2" width="60" align="center" valign="middle" style="border-bottom:1px #CCCCCC dashed">
+            <a href="{:url('goods/index')}&id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" width="60" height="60" /></a></td>
+            <td><strong>{$goods.goods_name}</strong></td>
+          </tr>
+          <tr>
+            <td style="border-bottom:1px #CCCCCC dashed">售价：{$goods.goods_price} 数量：{$goods.goods_number}<br>小计：{$goods.subtotal}</td>
+          </tr>
+          <!-- {/foreach} -->
+      </table>
+      <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+        <tr>
+          <td align="right"> {$lang.goods_all_price}<!-- {if $order.extension_code eq "group_buy"} -->{$lang.gb_deposit}<!-- {/if} -->: {$order.formated_goods_amount} 
+            <!-- {if $order.discount gt 0} 折扣 --> 
+            - {$lang.discount}: {$order.formated_discount} 
+            <!-- {/if} --> 
+            <!-- {if $order.tax gt 0} --> 
+            + {$lang.tax}: {$order.formated_tax} 
+            <!-- {/if} --> 
+            <!-- {if $order.shipping_fee > 0} --> 
+            + {$lang.shipping_fee}: {$order.formated_shipping_fee} 
+            <!-- {/if} --> 
+            <!-- {if $order.insure_fee > 0} --> 
+            + {$lang.insure_fee}: {$order.formated_insure_fee} 
+            <!-- {/if} --> 
+            <!-- {if $order.pay_fee > 0} --> 
+            + {$lang.pay_fee}: {$order.formated_pay_fee} 
+            <!-- {/if} --> 
+            <!-- {if $order.pack_fee > 0} --> 
+            + {$lang.pack_fee}: {$order.formated_pack_fee} 
+            <!-- {/if} --> 
+            <!-- {if $order.card_fee > 0} --> 
+            + {$lang.card_fee}: {$order.formated_card_fee} 
+            <!-- {/if} --></td>
+        </tr>
+        <tr>
+          <td align="right"><!-- {if $order.money_paid > 0} --> 
+            - {$lang.order_money_paid}: {$order.formated_money_paid} 
+            <!-- {/if} --> 
+            <!-- {if $order.surplus > 0} --> 
+            - {$lang.use_surplus}: {$order.formated_surplus} 
+            <!-- {/if} --> 
+            <!-- {if $order.integral_money > 0} --> 
+            - {$lang.use_integral}: {$order.formated_integral_money} 
+            <!-- {/if} --> 
+            <!-- {if $order.bonus > 0} --> 
+            - {$lang.use_bonus}: {$order.formated_bonus} 
+            <!-- {/if} --></td>
+        </tr>
+        <tr>
+          <td align="right">{$lang.order_amount}: {$order.formated_order_amount} 
+            <!-- {if $order.extension_code eq "group_buy"} --><br />
+            {$lang.notice_gb_order_amount}<!-- {/if} --></td>
+        </tr>
+        <!-- {if $allow_edit_surplus} 如果可以编辑使用余额数 -->
+        <tr>
+          <td align="right"><form action="{:url('user/act_edit_surplus')}" method="post" name="formFee" id="formFee">
+              {$lang.use_more_surplus}：
+              <input name="surplus" type="text" size="8" value="0" style="border:1px solid #ccc; padding:3px; border-radius:5px;"/><br>
+              {$max_surplus}
+              <input type="submit" name="Submit" class="c-btn3" value="{$lang.button_submit}余额付款" />
+              <input type="hidden" name="act" value="act_edit_surplus" />
+              <input type="hidden" name="order_id" value="{$smarty.get.order_id}" />
+            </form></td>
+        </tr>
+        <!--{/if}-->
+      </table>
+
+      <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+        <tr>
+          <td><strong>{$lang.select_payment}:</strong> {$order.pay_name}。<br><strong>{$lang.order_amount}:</strong>	{$order.formated_order_amount}<br />
+            {$order.pay_desc}{if $order.order_amount gt 0}<br>{$order.pay_online}{/if}</td>
+        </tr><!--{if $payment_list}-->
+        <tr>
+          <td align="center">
+            
+            <form name="payment" method="post" action="{:url('user/edit_payment')}">
+              {$lang.change_payment}: <br/>
+              <select name="pay_id" style="margin:6px 0">
+                <!--{foreach from=$payment_list item=payment}-->
+                <option value="{$payment.pay_id}"> {$payment.pay_name}({$lang.pay_fee}:{$payment.format_pay_fee}) </option>
+                <!--{/foreach}-->
+              </select>
+              <br/>
+              <input type="hidden" name="order_id" value="{$order.order_id}" />
+              <input type="submit" name="Submit" class="c-btn3" value="{$lang.button_submit}" />
+            </form>
+            
+           </td>
+        </tr> <!--{/if}-->
+      </table>
+      <table border="0" cellpadding="5" cellspacing="0" class="ectouch_table" style="margin-bottom:6%;">
+        <!-- {if $order.shipping_id > 0} -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.shipping}：</strong>{$order.shipping_name}</td>
+          </tr>
+        <!-- {/if} -->
+        
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.payment}：</strong>{$order.pay_name}</td>
+          </tr>
+        <!--{if $order.insure_fee > 0}--> 
+        <!--{/if}--> 
+        <!-- {if $order.pack_name} 是否使用包装 -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.use_pack}：</strong>{$order.pack_name}</td>
+          </tr>
+        <!-- {/if} 是否使用包装 --> 
+        <!-- {if $order.card_name} 是否使用贺卡 -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.use_card}：</strong>{$order.card_name}</td>
+          </tr>
+        <!-- {/if} --> 
+        <!-- {if $order.card_message} 是否使用贺卡 -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.bless_note}：</strong>{$order.card_message}</td>
+          </tr>
+        <!-- {/if} 是否使用贺卡 --> 
+        <!-- {if $order.surplus > 0} 是否使用余额 --> 
+        <!-- {/if} --> 
+        <!-- {if $order.integral > 0} 是否使用积分 -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.use_integral}：</strong>{$order.integral}</td>
+          </tr>
+        <!-- {/if} 是否使用积分 --> 
+        <!-- {if $order.bonus > 0} 是否使用红包 --> 
+        <!-- {/if} --> 
+          <!-- {if $order.inv_payee && $order.inv_content} 是否开发票 -->
+        <tr>
+          <td align="left"><strong>{$lang.invoice_title}：</strong>{$order.inv_payee}</td>
+          <td align="left"><strong>{$lang.invoice_content}：</strong>{$order.inv_content}</td>
+          </tr>
+       <!--{/if}-->
+        <!-- {if $order.postscript} 是否有订单附言 -->
+        <tr>
+          <td colspan="2" align="left"><strong>{$lang.order_postscript}：</strong>{$order.postscript}</td>
+          </tr>
+        <!-- {/if} -->
+        <tr>
+          <td colspan="2" align="left" ><strong>{$lang.booking_process}：</strong>{$order.how_oos_name}</td>
+          </tr>
+      </table>
+      </div>   
+       <div style="padding:0 2rem; margin-bottom:4rem;"> {$order.handler}
+  <!-- {if $order.shipping_id > 0} --><a class="c-btn3" style="width:40%; float:right; margin-right:1rem;" type="button" href="{:url('order_tracking', array('order_id'=>$this->_var['order']['order_id']))}">{$lang.order_tracking}</a><!-- {/if} --> 
+</div>
+    </section>
+   

@@ -1,0 +1,5 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='transport_jquery.js'}
+<li><a class="shopCart" href="flow.php" id="shoppingcar_link">
+ {insert name='cart_info'}
+</a></li>

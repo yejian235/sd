@@ -1,0 +1,81 @@
+﻿<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,vancl_common.js'}
+{insert_scripts files='transport_jquery.js,utils.js,jquery.SuperSlide.js'}
+
+<!-- 悬浮头部 start  -->
+<div class="headBox">
+	<div class="headCon clearfix">
+    	<div id="logo_areaID" class="hd_logo_area f_l clearfix"> <a href="./index.php" class="fl"> <img src="images/logo.gif"></a></div>
+        <div class="f_r">
+        	<div class="clearfix">
+            	<ul class="SiteNav clearfix" id="ECS_MEMBERZONE">
+                	{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}
+                    {insert name='member_info'}
+                    <li><a class="shopCart" href="flow.php" id="shoppingcar_link">{insert name='cart_info'}</a></li>
+                    <li class="guanzhu">
+                    	<span></span>
+                        <div class="otherBox">
+                        	<i></i>
+                        	<em></em>
+                        	<div class="otherBoxCon"><img src="images/2wm_wx.jpg"><p>扫描顺旦商贸方形<br>微信二维码</p></div>
+                        </div>
+                    </li>
+                    <li class="guanzhu sanweobo">
+                    	<span></span>
+                        <div class="otherBox">
+                        	<i></i>
+                        	<em></em>
+                        	<div class="otherBoxCon"><img src="images/2wm_xl.jpg"><p>关注官方微博：顺旦</p></div>
+                        </div>
+                    </li>
+                    <!--{if $navigator_list.top}-->
+                    <li>
+                    	<!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+                        <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank"{/if}>{$nav.name}</a>
+                        <!-- {if !$smarty.foreach.nav_top_list.last} -->&nbsp;&nbsp;|&nbsp;&nbsp;<!-- {/if} -->
+                        <!-- {/foreach} -->
+                    </li>
+                    <!-- {/if} -->
+                </ul>
+                <script>
+                	$(".SiteNav li.topmemlist,.SiteNav li.guanzhu").hover(function(){
+						$(this).addClass("on");
+					},function(){
+						$(this).removeClass("on");
+					});
+                </script>
+            </div>
+            <div class="Nav clearfix">
+				<ul>
+                    <li {if $navigator_list.config.index eq 1} class="cur"{/if}><a href="index.php">{$lang.home}</a></li>
+                    <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+                    <li {if $nav.active eq 1} class="cur"{/if}><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
+                    <!-- {/foreach} -->
+                </ul>
+			</div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script type="text/javascript">
+function deleteCartGoods(rec_id)
+{
+	Ajax.call('delete_cart_goods.php', 'id='+rec_id, deleteCartGoodsResponse, 'POST', 'JSON');
+}
+
+/**
+ * 接收返回的信息
+ */
+function deleteCartGoodsResponse(res)
+{
+  if (res.error)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+	  $("#shoppingCarNone").html(res.content);
+  }
+}
+</script> 

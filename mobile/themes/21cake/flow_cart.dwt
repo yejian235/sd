@@ -1,0 +1,60 @@
+<div class="blank3"></div>
+<!-- {if $goods_list } -->
+<section class="wrap" style="padding-bottom:1rem"  >
+    <ul class="radius3 itemlist">
+      <!-- {foreach from=$goods_list item=goods} -->
+      <li class="new-tbl-type">
+        <div class="itemlist_l new-tbl-cell"> 
+          <!-- {if $goods.goods_id gt 0 && $goods.extension_code neq 'package_buy'} 商品 --> 
+          <a  href="{:url('goods/index',array('id'=>$this->_var['goods']['goods_id']))}" target="_blank"> <img class="lazy" src="{$goods.goods_thumb}" border="0" title="{$goods.goods_name|escape:html}" /> </a> 
+          <!-- {if $goods.parent_id gt 0} 配件 --> 
+          <span style="color:#FF0000">（{$lang.accessories}）</span> 
+          <!-- {/if} --> 
+          <!-- {if $goods.is_gift gt 0} 赠品 --> 
+          <span style="color:#FF0000">（{$lang.largess}）</span> 
+          <!-- {/if} --> 
+          <!-- {elseif $goods.goods_id gt 0 && $goods.extension_code eq 'package_buy'} --> 
+          <a href="javascript:void(0)" onClick="setSuitShow({$goods.goods_id})" class="f6">{$goods.goods_name}<span style="color:#FF0000;">（{$lang.remark_package}）</span></a>
+          <div id="suit_{$goods.goods_id}" style="display:none"> 
+            <!-- {foreach from=$goods.package_goods_list item=package_goods_list} --> 
+            <a href="{:url('goods/index')}&id={$package_goods_list.goods_id}" target="_blank" class="f6">{$package_goods_list.goods_name}</a><br />
+            <!-- {/foreach} --> 
+          </div>
+          <!-- {else} 优惠活动 --> 
+          {$goods.goods_name} 
+          <!-- {/if} --> 
+        </div>
+        <div class="desc new-tbl-cell"> <a style="color:#333" href="{:url('goods/index',array('id'=>$this->_var['goods']['goods_id']))}" target="_blank" class="fragment">
+          <h4>{$goods.goods_name}</h4>
+          </a>
+          <div style="clear:both"> </div>
+          <!-- {if $show_goods_attribute eq 1} 显示商品属性 -->
+          <p> {$goods.goods_attr|nl2br} </p>
+          <!-- {/if} -->
+          <div class="b"> <em class="price">{$goods.goods_price}</em> <span style="jianju">x </span> <span class="txt"> 
+            <!-- {if $goods.goods_id gt 0 && $goods.is_gift eq 0 && $goods.parent_id eq 0} 普通商品可修改数量 -->
+            <input type="hidden" id="back_number{$goods.rec_id}" value="{$goods.goods_number}" />
+            <input class="inputBg input" style="padding:0;" type="number" min="1" max="1000" name="goods_number[{$goods.rec_id}]" id="goods_number{$goods.rec_id}" value="{$goods.goods_number}" size="4" onChange="change_goods_number(2,{$goods.rec_id})"  onKeyUp="change_goods_number(2,{$goods.rec_id})"/>
+            <!-- {else} --> 
+            {$goods.goods_number} 
+            <!-- {/if} --> 
+            </span> <a href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='{:url('flow/drop_goods',array('id'=>$this->_var['goods']['rec_id']))}';"   class="ico_08 cha"> </a> </div>
+        </div>
+      </li>
+      <!-- {/foreach} -->
+    </ul>
+    <input type="hidden" name="step" value="update_cart" />
+</section>
+<footer class="toolbar radius3">
+  <p>{$lang.total}: <em class="price" id="goods_subtotal">{$total.goods_price}</em></p>
+  <a href="{:url('flow/checkout')}">{$lang.check_out}(<em class="num" id="total_number">{$total.total_number}</em>)</a> </footer>
+    <!--{else}-->
+  <section class="wrap"  >
+  <div class="empty-cart">
+    <div class="ico_13 cart-logo"></div>
+    <p class="message"><strong>{$lang.empty_shopping}</strong></p>
+    <div class="flex"> <a class="c-btn2  flex_in radius3" href="{:url('category/all')}" > {$lang.go_shopping} </a></div>
+  </div>
+</section>
+  <!-- {/if} --> 
+</div>

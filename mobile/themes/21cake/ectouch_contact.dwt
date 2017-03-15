@@ -1,0 +1,33 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+<section class="wrap wrapU">
+  <div id="leftTabBox" class="loginBox">
+    <div class="hd"> <span style="font-size:1rem;">欢迎光临{$shop_name}</span>
+      <ul>
+        <li><a href="javascript:void(0)">联系我们</a></li>
+        <li><a href="javascript:void(0)">关于我们</a></li>
+      </ul>
+    </div>
+    <div class="blank2"></div>
+   
+    <div class="bd" id="tabBox1-bd"><!-- 添加id，js用到 -->
+      <ul style="padding:0; margin:0;">
+        <div class="list_box padd1 radius10" style="padding-top:0;padding-bottom:0;">
+        	<!-- 客服电话{if $service_phone} -->
+        	<a href="tel:{$service_phone}" class="clearfix"> <span class="ico_touch ico_touch_01"></span><span>咨询热线：{$service_phone}</span><i></i> </a>
+            <!-- 结束客服电话{/if} -->
+            <!-- QQ 号码 {foreach from=$qq item=im} -->
+            <!-- {if $qq} -->
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={$im}&site={$shop_name}&menu=yes" class="clearfix"> <span class="ico_touch ico_touch_02"></span><span>在线咨询：{$im}</span><i></i> </a> 
+            <!-- {/if} -->
+            <!-- {/foreach} 结束QQ号码 -->
+            <a href="{:url('ectouch/map',array('address'=>$this->_var['shop_address']))}" class="clearfix"> <span class="ico_touch ico_touch_03"></span><span>公司地址：{$shop_address}</span><i></i> </a> </div>
+      </ul>
+      <ul>
+        <div class="list_box padd1 radius10" style="padding-top:0;padding-bottom:0; font-size:0.8rem; line-height:1.5rem; padding:0.8rem">{$article.content}</div>
+      </ul>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">TouchSlide({ slideCell:"#leftTabBox",effect:"leftLoop" }); </script>
+</body>
+</html>

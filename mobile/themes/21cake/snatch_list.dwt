@@ -1,0 +1,11 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="con">
+    <header id="header">
+  <div class="header_l"> <a class="ico_10" href="{:url('index/index')}">  </a> </div>
+  <h1> 夺宝奇兵 </h1>
+  <div class="header_r"> <a class="ico_01" href="{:url('flow/cart')}">  </a> </div>
+</header>
+  <!-- #BeginLibraryItem "/library/goods_list_snatch.lbi" --><!-- #EndLibraryItem --> </div>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> 
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> 
+</body></html>

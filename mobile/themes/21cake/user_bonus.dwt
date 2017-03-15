@@ -1,0 +1,38 @@
+<!-- #BeginLibraryItem "/library/user_header.lbi" --><!-- #EndLibraryItem -->
+<div class="user-account-detail user-bonus">
+   <!-- {if $bonus} -->
+   <table width="100%" border="0" cellpadding="5" cellspacing="0" class="ectouch_table">
+	<!--{foreach from=$bonus item=item}-->
+		<tr>
+        	<td class="order_status">{$lang.bonus_sn}：{$item.bonus_sn|default:N/A}<span style="float:right;">{$item.status}</span></td>
+        </tr>
+        <tr>
+        	<td class="order_status">{$lang.bonus_amount}：{$item.type_money}</span> <span class="text-right type"  style="float:right;">{$lang.bonus_name}：{$item.type_name}</span></td>
+        </tr>
+		 <tr>
+        	<td class="order_status" style="border-bottom:1px #CCCCCC dashed"><span class="remark pull-left">{$lang.min_goods_amount}：{$item.min_goods_amount}</span> <span class="ext-right type"  style="float:right;">{$lang.bonus_end_date}：{$item.use_enddate}</span></td>
+        </tr>
+    <!--{/foreach}-->
+      </table>
+
+  </div>
+<!-- #BeginLibraryItem "/library/page.lbi" --><!-- #EndLibraryItem --> 
+  <!-- {/if} -->
+
+  <div class="table_box" style="padding: 10px">
+           <form name="formLogin" action="{:url('user/bonus')}" method="post" onSubmit="return addBonus()" class="validforms">
+            <dl class="loginUsr">
+              <dd>
+			  <input  name="bonus_sn" type="text" class="inputBgr1" placeholder="{$lang.bonus_number}" />
+              </dd>
+            </dl>
+            <dl>
+              <dd>
+                <input type="submit" name="submit"  value="添加" class="loginSubmit" />
+              </dd>
+            </dl>
+          </form>
+        </div>
+<!-- #BeginLibraryItem "/library/search.lbi" --><!-- #EndLibraryItem --> <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

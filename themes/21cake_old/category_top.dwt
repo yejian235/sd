@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> {insert_scripts files='vancl_category.js'}
+<div class="blank10"></div>
+<div class="Women_Top"> 
+  <!---  nav  --->
+  <div class="Men_nav Women_nav">
+    <h1 class="menlogo Womenlogo"><a href="{$cat_info.url}" class="track">{$cat_info.cat_name}</a></h1>
+    <div class="menlist">
+      <ul>
+        <!--{foreach from=$categories item=cat}--> 
+        <!--{if $cat.id eq $category}--> 
+        <!--{foreach from=$cat.cat_id item=child name=foo}--> 
+        <!--{if $smarty.foreach.foo.iteration < 10}-->
+        <li><a href="{$child.url}" class="track">{$child.name|escape:html}</a></li>
+        <!--{/if}--> 
+        <!--{/foreach}--> 
+        <!--{/if}--> 
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="Men_main"><span class="blank12"></span>
+  <div class="Men_focusTab  Women_focusTab">
+    <ul class="FocusNum">
+      <li class="hot">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <span class="lef_Btn"></span><span class="rig_Btn"></span>
+    <div id="main" class="FocusTab">
+      <ul>
+        <li>{insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页幻灯片1'}</li>
+        <li>{insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页幻灯片2'}</li>
+        <li>{insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页幻灯片3'}</li>
+        <li>{insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页幻灯片4'}</li>
+        <li>{insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页幻灯片5'}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="Men_ad01"> {insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页右侧广告1'}<span class="blank10"></span> {insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页右侧广告2'}<span class="blank10"></span> </div>
+  <span class="blank20"></span>
+  <div class="Men_category Women_category">
+    <div class="Men_Title Women_Title">
+      <h2> 热门分类</h2>
+    </div>
+    <div class="Men_categoryBox"> 
+      <!--{foreach from=$categories item=cat}--> 
+      <!--{if $cat.id eq $category}--> 
+      <!--{foreach from=$cat.cat_id item=child name=foo}-->
+      <div class="BoxContent WBoxContent">
+        <div>
+          <h3>{$child.name}</h3>
+          <p style="overflow:hidden; height:45px;"> 
+            
+            <!--{foreach from=$child.cat_id item=childer name=no}--> 
+            
+            <a class="track" target="_blank" href="{$childer.url}">{$childer.name}</a> 
+            
+            <!--{/foreach}--> 
+            
+          </p>
+        </div>
+      </div>
+      <!--{/foreach}--> 
+      <!--{/if}--> 
+      <!-- {/foreach} --> 
+      
+    </div>
+  </div>
+  <div class="Men_NewProduct">
+    <div class="Men_NewProduct_Title Women_NewProduct_Title">
+      <h3> 新品推荐</h3>
+      <ul>
+        
+        <!--{foreach from=$cat_child item=child name=foo}--> 
+        <!--{if $smarty.foreach.foo.iteration < 9}--> 
+        <li <!--{if $smarty.foreach.foo.iteration eq 1}-->class="hover"<!--{/if}--> ><a class="track" target="_blank" href="{$child.url}">{$child.cat_name}</a>
+        </li>
+        <!--{/if}--> 
+        <!--{/foreach}-->
+        
+      </ul>
+    </div>
+    <span class="blank10"></span>
+    <div class="Men_NewProduct_List"> 
+      <!--{foreach from=$cat_child item=goods_child name=foo}--> 
+      <!--{if $smarty.foreach.foo.iteration < 9}--> 
+      
+      <ul <!--{if $smarty.foreach.foo.iteration eq 1}-->style="display: block;"<!--{/if}-->> 
+      <!--{foreach from=$goods_child.goods item=goods name=no}-->
+      <!--{if $smarty.foreach.no.iteration < 6}-->
+      <li class="gItem_{$goods.id}<!--{if $smarty.foreach.no.iteration eq 5}--> none<!--{/if}-->"><a target="_blank" href="{$goods.url}" class="track"> <img alt="{$goods.name}" src="{$goods.thumb}"></a>
+        <h3> <a target="_blank" href="{$goods.url}" class="track">{$goods.name}</a></h3>
+        <p> <span>市场价{$goods.market_price}</span>售价{$goods.shop_price}</p>
+      </li>
+         <!--{/if}--> 
+      <!--{/foreach}-->
+      </ul>
+      
+      <!--{/if}--> 
+      <!--{/foreach}--> 
+    </div>
+  </div>
+  <div class="Men_ad02"> {insert name='ads_pro' cat_name=$cat_info.cat_name type='顶级分类页新品推荐右侧广告'}</div>
+  <span class="blank20"></span> <span class="blank20"></span> 
+  
+  <!--{foreach from=$on_top_goods item=top_goods}-->
+  <div class="Men_ProductList">
+    <div class="Men_Title Women_Title">
+      <h2>{$top_goods.cat_name}</h2>
+      <span><a class="track" target="_blank" href="{$top_goods.cat_url}">全部商品&gt;&gt;</a></span> </div>
+    <span class="blank0"></span>
+    <ul>
+      <!--{foreach from=$top_goods.goods item=goods name=foo}-->  
+      <li class="gItem_{$goods.id}<!--{if $smarty.foreach.foo.iteration mod 4 eq 0}--> none<!--{/if}--><!--{if $smarty.foreach.foo.iteration mod 5 eq 0}--> nonew<!--{/if}-->"><a target="_blank" href="{$goods.url}" class="track"> <img alt="{$goods.name}" src="{$goods.thumb}" style="display: block;"> </a>
+      <h3> <a target="_blank" href="{$goods.url}" class="track">{$goods.name}</a></h3>
+      <p> <span>市场价{$goods.market_price}</span>售价{if $goods.promote_price neq ''}{$goods.promote_price}{else}{$goods.shop_price}{/if}</p>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+  <!--{/foreach}--> 
+  
+</div>
+<div class="blank10"> </div>
+<div id="recommendscontainer">
+  <div class="rchannel_tuijian rchannel_clearfix">
+    <div class="rchannel_title">根据您的浏览记录为您推荐</div>
+    <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+    
+
+       <!-- #BeginLibraryItem "/library/browse_related.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</div>
+
+
+  
+<div id="arrowicon" class="ico" style="z-index: 1002;  display: none; background-position: 0px 0px; "></div>
+<div id="popup" style="position: absolute; z-index: 1001; height: 499px; display: none; " class="fc02"><div class="msTipjJ"><img style="width:270px;height:270px;" id="popupimage" src=""></div><div class="msTipsd"><span></span><em class="msTipjJ01"></em></div><ul class="msTipPrice"><li class="msTipjJ02"><strong></strong></li><li class="msTipjJ03"></li></ul><p class="msTipjJ04"><span>好评率</span><em></em></p><div class="blank10"></div><div class="msTipjJ05" id="popupcomments"></div></div>
+
+<div class="blank10"></div>
+<div id="footerArea"><!-- #BeginLibraryItem "/library/help.lbi" --> <!-- #EndLibraryItem --> <span class="blank15"></span> <!-- #BeginLibraryItem "/library/page_footer.lbi" --> <!-- #EndLibraryItem --> </div>
+</body>
+
+</html>

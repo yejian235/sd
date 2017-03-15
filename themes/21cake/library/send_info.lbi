@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<form name="shipping_Form" class="form" method="post" action="user.php">
+  <table class="tb-void tb-none" style="border:none;">
+    <colgroup>
+    <col width="110px">
+    <col>
+    </colgroup>
+    <tbody>
+      <tr>
+        <td><span class="ftx03">退货快递公司：</span></td>
+        <td>
+        <select name="back_shipping_name" class="sele" >
+            <option value="0">{$lang.please_select}</option>
+            <!-- {foreach from=$shipping_list item=ship} -->
+            <option value="{$ship.shipping_id}">{$ship.shipping_name}</option>
+            <!-- {/foreach} -->
+          </select>
+         <!-- 其他
+          <input name="back_other_shipping 	" type="text" style="text-align: left;"  class="text text02" value="{$order.address|escape}" />-->
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ftx03">快递单号：</span></td>
+        <td>
+        <input name="back_invoice_no" type="text" style="text-align: left;"  class="text text02"  value="{$order.address|escape}" />
+        <label style="cursor:pointer" for="receipt_id_flag"></label>
+        </td>
+      </tr>
+      <tr>
+        <td><span class="ftx03">寄回地址：</span></td>
+        <td>
+        {$business_address}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <a href="javascript:void(0)" onclick="sub_shiping()" class="btn btn-5">{$lang.send_out}</a>
+        <input type="hidden" name="ret_id" value="{$ret_id}"/>
+        <input type="hidden" name="act" value="to_return" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<script>
+function sub_shiping(){
+	
+	document.forms['shipping_Form'].submit();
+	
+	}
+</script>
