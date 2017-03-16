@@ -880,14 +880,16 @@ function cat_options($spec_cat_id, $arr)
  */
 function load_config()
 {
+
     $arr = array();
 
     $data = read_static_cache('shop_config');
+
     if ($data === false)
     {
         $sql = 'SELECT code, value FROM ' . $GLOBALS['ecs']->table('shop_config') . ' WHERE parent_id > 0';
         $res = $GLOBALS['db']->getAll($sql);
-
+		
         foreach ($res AS $row)
         {
             $arr[$row['code']] = $row['value'];
@@ -3102,5 +3104,22 @@ if (!function_exists('array_combine')) {
         return $combined;
     }
 }
-
+function xml_to_array($xml) {
+	$reg = "/<(\w+)[^>]*>([\\x00-\\xFF]*)<\\/\\1>/";
+	$arr = array();
+	if (preg_match_all($reg, $xml, $matches)) {
+		$count = count($matches[0]);
+		for ($i = 0; $i < $count; $i++) {
+			$subxml = $matches[2][$i];
+			$key = $matches[1][$i];
+			if (preg_match($reg, $subxml)) {
+				$arr[$key] = xml_to_array($subxml);
+			} else {
+				$arr[$key] = $subxml;
+			}
+		}
+	}
+	return $arr;
+}
+
 ?>

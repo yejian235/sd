@@ -14,24 +14,39 @@ function sendsms_imtong($mobile, $content)
 	$content = str_replace('10086','1 0 0 8 6',$content);
 
 	//配置信息
-	$smsapi = "api.chanyoo.cn";					//短信网关
+	//$smsapi = "api.chanyoo.cn";					//短信网关
+	$smsapi = "106.ihuyi.com";					//短信网关
 	$charset = "utf8";							//文件编码
 
-	$content = $content."【".$GLOBALS['_CFG']['shop_name']."】";
-
-	$sendurl = "http://".$smsapi."/".$charset."/interface/send_sms.aspx?username=".$GLOBALS['_CFG']['ecsdxt_user_name']."&password=".$GLOBALS['_CFG']['ecsdxt_pass_word']."&receiver=".$mobile."&content=".urlencode($content)."";
-
+	//$content = $content."【".$GLOBALS['_CFG']['shop_name']."】";
+	//$content = "您的验证码是:1234.请不要把验证码泄露给其他人.";
+	/*$sendurl = "http://".$smsapi."/".$charset."/interface/send_sms.aspx?username=".$GLOBALS['_CFG']['ecsdxt_user_name']."&password=".$GLOBALS['_CFG']['ecsdxt_pass_word']."&receiver=".$mobile."&content=".urlencode($content)."";
+	 
 	$result = file_get_contents($sendurl);
 
 	$xml = simplexml_load_string($result);
-
-	if ($xml->result >= 0)
+	
+	if ($xml->code == 2)
 	{
 		return true;
 	}
 	else
 	{
-		return iconv("utf-8", "gbk", $xml->message); 
+		return iconv("utf-8", "gbk", $xml->msg); 
+	}*/
+	$sendurl = "http://".$smsapi."/webservice/sms.php?method=Submit&account=".$GLOBALS['_CFG']['ecsdxt_user_name']."&password=".$GLOBALS['_CFG']['ecsdxt_pass_word']."&mobile=".$mobile."&content=".urlencode($content)."";
+
+	$result = file_get_contents($sendurl);
+
+	$gets = xml_to_array($result);
+
+	if ($gets['SubmitResult']['code']==2)
+	{
+		return true;
+	}
+	else
+	{
+		return $gets['SubmitResult']['msg']; 
 	}
 }
 
