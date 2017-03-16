@@ -6210,12 +6210,12 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizi
 	margin: 0 5px;
 }
 .login_wrapper { width:400px; margin:0 auto;}
-.login{ padding:80px 0 100px;}
+.login{ padding:50px 0 100px;}
 .tag{ height:60px; line-height:41px; text-align:center; margin-bottom:10px;}
 .tag h2{ position:relative; display:inline; font-size:24px; color:#8d6a54;}
 .tag h2 i{ width:41px; height:36px; background:url(images/userbg.jpg) no-repeat; position:absolute; top:-3px; left:-50px;}
 .user_infor{}
-.user_infor li{ position:relative; margin-top:-1px; height:50px;}
+.user_infor li{ position:relative; margin-top:5px; height:50px;}
 .user_infor li.form-item2{}
 .user_infor li.form-item3{ padding:17px 0;}
 .user_infor li.form-item4{ height:auto;}

@@ -92,8 +92,13 @@
                         </li>
                         
                         <li class="clearfix form-item"><label {if $field.is_need} id="passwd_quesetion" {/if}>{$lang.passwd_answer}：</label><input class="x-input" type="text" name="passwd_answer"><span class="x-text">{$lang.passwd_answer}</span><!-- {if $field.is_need} --><div id="email_notice" class="Judge"></div><!-- {/if} --><div class="Tips"><span>请输入您选择的{$lang.passwd_answer}<i></i></span></div></li>
-                        <!-- {else} -->
-                        <li class="clearfix form-item"><label {if $field.is_need} id="extend_field{$field.id}i" {/if}>{$field.reg_field_name}：</label><input class="x-input" type="text" name="extend_field{$field.id}"><span class="x-text">{$field.reg_field_name}</span><!-- {if $field.is_need} --><div id="email_notice" class="Judge"></div><!-- {/if} --><div class="Tips"><span>请输入您常用的{$field.reg_field_name}<i></i></span></div></li>
+			<!-- {else} -->
+				<li class="clearfix form-item"><label {if $field.is_need} id="extend_field{$field.id}i" {/if}>{$field.reg_field_name}：</label><input class="x-input" type="text" name="extend_field{$field.id}" id="extend_field{$field.id}"><span class="x-text">{$field.reg_field_name}</span><!-- {if $field.is_need} --><div id="email_notice" class="Judge"></div><!-- {/if} --><div class="Tips"><span>请输入您常用的{$field.reg_field_name}<i></i></span></div></li>
+				<!-- {if $field.id eq 5} -->
+				{insert_scripts files='global.js'}
+				{insert_scripts files='sms.js'}
+				<li class="clearfix form-item"><label {if $field.is_need} id="extend_field{$field.id}i_dx" {/if}>短信验证码：</label><input name="extend_field{$field.id}_dx" id="extend_field{$field.id}_dx" type="text" size="25" class="x-input x-input2" maxlength="6" /><span class="x-text">短信验证码</span><!-- {if $field.is_need} --><div id="email_notice" class="Judge"></div><!-- {/if} --><div class="Tips"><span>请输入短信验证码<i></i></span></div><span style="display:inline-block;vertical-align: top;width:127px;height:48px;line-height:48px;text-align:center;border: solid 1px #eee;border-left:none;"> <a href="javascript:;" onclick="getverifycode1('#extend_field{$field.id}', '{$field.reg_field_name}');"><font color="red"><b>获取</b></font></a></span></li>
+				<!-- {/if} -->
                         <!-- {/if} -->
                         <!-- {/foreach} -->                        
                         

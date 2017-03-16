@@ -3,7 +3,7 @@ function trim(str) {
 }
 
 function getverifycode1(field_id, field_name) {
-	var mobile = trim($(field_id).value);
+	var mobile = trim($(field_id).val());
 	if(mobile == '') {
 		alert("- "+field_name+" 不能为空！");
 		$(field_id).focus();
@@ -13,7 +13,7 @@ function getverifycode1(field_id, field_name) {
 }
 
 function getverifycode2() {
-	var mobile = trim($("mobile").value);
+	var mobile = trim($("mobile").val());
 	if(mobile == '') {
 		alert("手机号不能为空！");
 		$("mobile").focus();
